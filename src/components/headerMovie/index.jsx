@@ -25,10 +25,10 @@ const MovieHeader = (props) => {
   const movie = props.movie;
 
   // Retrieve favorites from local storage
-  const favorites = JSON.parse(localStorage.getItem("favourites")) || [];
+  const movieFavorites = JSON.parse(localStorage.getItem("movieFavourites")) || [];
 
   // Check if movie is marked as a favorite
-  const isFavorite = favorites.some((favorite) => favorite.id === movie.id);
+  const isFavorite = movieFavorites.some((movieFavorite) => movieFavorite.id === movie.id);
 
   return (
     <Paper component="div" sx={styles.root}>

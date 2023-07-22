@@ -12,3 +12,6 @@ const useMovie = id => {
 };
 
 export default useMovie
+
+
+//changed id to movie_id

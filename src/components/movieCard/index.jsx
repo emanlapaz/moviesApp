@@ -24,17 +24,17 @@ const styles = {
   },
 };
 export default function MovieCard({ movie, action }) {
-  const { favourites, addToFavourites } = useContext(MoviesContext);
+  const { movieFavourites, addMovieToFavourites } = useContext(MoviesContext);
 
-  if (favourites.find((id) => id === movie.id)) {
-    movie.favourite = true;
+  if (movieFavourites.find((id) => id === movie.id)) {
+    movie.movieFavourite = true;
   } else {
-    movie.favourite = false
+    movie.movieFavourite = false
   }
 
   return (
-    <Card sx={styles.card}>
-        <CardHeader sx={styles.header} avatar={movie.favourite ? (
+    <Card sx={styles.card}> 
+        <CardHeader sx={styles.header} avatar={movie.movieFavourite ? ( //check this line movie.favourites??
           <Avatar sx={styles.avatar}>
             <FavoriteIcon />
           </Avatar>

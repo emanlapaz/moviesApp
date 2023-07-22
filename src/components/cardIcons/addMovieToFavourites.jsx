@@ -4,12 +4,12 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 
-const AddToFavouritesIcon = ({ movie }) => {
+const AddMovieToFavouritesIcon = ({ movie }) => {
   const context = useContext(MoviesContext);
 
   const onUserSelect = (e) => {
     e.preventDefault();
-    context.addToFavourites(movie);
+    context.addMovieToFavourites(movie);
   };
   return (
     <IconButton aria-label="add to favorites" onClick={onUserSelect}>
@@ -18,4 +18,6 @@ const AddToFavouritesIcon = ({ movie }) => {
   );
 };
 
-export default AddToFavouritesIcon;
+export default AddMovieToFavouritesIcon;
+
+// changed to addMoviesToFavourites.jsx

@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
-import PageTemplate from "../components/templateMovieListPage";
+import MovieListPageTemplate from "../components/templateMovieListPage";
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
-import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
-import WriteReview from "../components/cardIcons/writeReview";
-
-
-
+import RemoveMovieFromFavourites from "../components/cardIcons/removeMovieFromFavourites";
+import WriteMovieReview from "../components/cardIcons/writeMovieReview";
 
 const FavouriteMoviesPage = (props) => {
   const { favourites: movieIds } = useContext(MoviesContext);
@@ -32,14 +29,14 @@ const FavouriteMoviesPage = (props) => {
   const movies = favouriteMovieQueries.map((q) => q.data);
 
   return (
-    <PageTemplate
+    <MovieListPageTemplate
     title="Favourite Movies"
     movies={movies}
     action={(movie) => {
       return (
         <>
-          <RemoveFromFavourites movie={movie} />
-          <WriteReview movie={movie} />
+          <RemoveMovieFromFavourites movie={movie} />
+          <WriteMovieReview movie={movie} />
         </>
       );
     }}

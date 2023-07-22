@@ -4,54 +4,53 @@ export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
   // State variables
-  const [myReviews, setMyReviews] = useState({});
-  const [favourites, setFavourites] = useState([]);
-  const [playlists, setPlaylists] = useState([]);
-
+  const [myMovieReviews, setMyMovieReviews] = useState({});
+  const [movieFavourites, setMovieFavourites] = useState([]);
+  const [moviePlaylists, setMoviePlaylists] = useState([]);
   // Side effect for logging favourites and playlists
   useEffect(() => {
-    console.log("Favourites:", favourites);
-    console.log("Playlists:", playlists);
-  }, [favourites, playlists]);
+    console.log("Favourite Movies:", movieFavourites);
+    console.log("Movie Playlists:", moviePlaylists);
+  }, [movieFavourites, moviePlaylists]);
 
   // Function to add a movie to favourites
-  const addToFavourites = (movie) => {
-    let updatedFavourites = [...favourites];
-    if (!favourites.includes(movie.id)) {
-      updatedFavourites.push(movie.id);
+  const addMovieToFavourites = (movie) => {
+    let updatedMovieFavourites = [...movieFavourites];
+    if (!movieFavourites.includes(movie.id)) {
+      updatedMovieFavourites.push(movie.id);
     }
-    setFavourites(updatedFavourites);
+    setMovieFavourites(updatedMovieFavourites);
   };
 
   // Function to add a movie to playlists
-  const addToPlaylists = (movie) => {
-    let updatedPlaylists = [...playlists];
-    if (!playlists.includes(movie.id)) {
-      updatedPlaylists.push(movie.id);
+  const addMovieToPlaylists = (movie) => {
+    let updatedMoviePlaylists = [...moviePlaylists];
+    if (!moviePlaylists.includes(movie.id)) {
+      updatedMoviePlaylists.push(movie.id);
     }
-    setPlaylists(updatedPlaylists);
+    setMoviePlaylists(updatedMoviePlaylists);
   };
 
   // Function to remove a movie from favourites
-  const removeFromFavourites = (movie) => {
-    setFavourites(favourites.filter((mId) => mId !== movie.id));
+  const removeMovieFromFavourites = (movie) => {
+    setMovieFavourites(movieFavourites.filter((mId) => mId !== movie.id));
   };
 
   // Function to add a review for a movie
-  const addReview = (movie, review) => {
-    setMyReviews({ ...myReviews, [movie.id]: review });
+  const addMovieReview = (movie, movieReview) => {
+    setMyMovieReviews({ ...myMovieReviews, [movie.id]: movieReview });
   };
 
   // Provide the context value to the child components
   return (
     <MoviesContext.Provider
       value={{
-        favourites,
-        playlists,
-        addToFavourites,
-        addToPlaylists,
-        removeFromFavourites,
-        addReview,
+        movieFavourites,
+        moviePlaylists,
+        addMovieToFavourites,
+        addMovieToPlaylists,
+        removeMovieFromFavourites,
+        addMovieReview,
       }}
     >
       {props.children}
