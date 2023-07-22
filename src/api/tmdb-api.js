@@ -12,8 +12,7 @@ export const getMovies = () => {
   });
 };
 
-
-export const getTVshows = () => {
+export const getTvShows = () => {
   return fetch(
     `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
   ).then((response) => {
@@ -27,8 +26,6 @@ export const getTVshows = () => {
   });
 };
 
-
-  
 export const getMovie = (args) => {
   console.log(args)
   const [, idPart] = args.queryKey;
@@ -46,7 +43,7 @@ export const getMovie = (args) => {
  });
 };
 
-export const getTVshow = (args) => {
+export const getTvShow = (args) => {
   console.log(args)
   const [, idPart] = args.queryKey;
   const { id } = idPart;
@@ -112,7 +109,7 @@ export const getMovieImages = ({ queryKey }) => {
  });
 };
   
-export const getTvImages = ({ queryKey }) => {
+export const getTvShowImages = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
   return fetch(
@@ -140,7 +137,7 @@ export const getMovieReviews = (id) => {
     });
 };
   
-export const getTvReviews = (id) => {
+export const getTvShowReviews = (id) => {
   return fetch(
     `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${import.meta.env.VITE_TMDB_KEY}`
   )
@@ -167,9 +164,10 @@ export const getUpcomingMovies = () => {
   });
 };
 
-export const getUpcomingTvShows = () => {
+// get all 
+export const getOnTheAirTvShows = () => {
   return fetch(
-  "https://api.themoviedb.org/3/tv/upcoming?api_key=" +
+  "https://api.themoviedb.org/3/tv/on_the_air?api_key=" +
     import.meta.env.VITE_TMDB_KEY +
     "&language=en-US&page=1"
     ).then((response) => {
@@ -182,3 +180,17 @@ export const getUpcomingTvShows = () => {
       throw error
   });
 };
+
+
+//changed id to movie_id and tvShow_id
+
+// Top rated movies: https://api.themoviedb.org/3/movie/top_rated
+// Top rated TV: https://api.themoviedb.org/3/tv/top_rated
+
+
+//Trending Page includes trending all.
+// timewindow = day or week
+// Trending movies: https://api.themoviedb.org/3/trending/movies/{time_window}
+// Trending TV: https://api.themoviedb.org/3/trending/tv/{time_window}
+// Trending people: https://api.themoviedb.org/3/trending/person/{time_window}
+// trending All: https://api.themoviedb.org/3/trending/all/{time_window}

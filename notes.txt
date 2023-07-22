@@ -9,3 +9,9 @@ Add FANTASY page.
 
 // changed $id to movie _id and add tv_id
 // added TV shows get requests
+
+Add TV list on Home page
+Home page is currently the movies page
+TV and Movies and People page includes: 1. Top Rated, Upcoming, and Trending/Hot page
+
+to do: debug TV shows and favourites
