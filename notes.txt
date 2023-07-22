@@ -1,0 +1,11 @@
+add pages:
+
+1. Add TV shows in HOME pages. Home will have both TV shows and movies
+2. Add TV Shows pages
+3. Add MOVIE only page
+4. Add Whats HOT page with tredning movis and TV shows
+Add FANTASY page. 
+
+
+// changed $id to movie _id and add tv_id
+// added TV shows get requests
