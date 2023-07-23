@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import TvShowDetails from "../components/tvShowDetails";
-import TemplateTvShowPage from "../components/templateTvShowPage";
+import PageTemplate from "../components/templateTvShowPage";
 import useTvShow from "../hooks/useTvShow";
 import { getTvShow } from '../api/tmdb-api'
 import { useQuery } from "react-query";
@@ -11,7 +11,7 @@ import Spinner from '../components/spinner'
 const TvShowDetailsPage = () => {
   const { id } = useParams();
 
-  const { data: movie, error, isLoading, isError } = useQuery(
+  const { data: tvShow, error, isLoading, isError } = useQuery(
     ["tvShow", { id: id }],
     getTvShow
   );
@@ -27,9 +27,9 @@ const TvShowDetailsPage = () => {
     <>
       {tvShow ? (
         <>
-          <TemplateTvShowPage tvShow={tvShow}>
+          <PageTemplate tvShow={tvShow}>
             <TvShowDetails tvShow={tvShow} />
-          </TemplateTvShowPage>
+          </PageTemplate>
         </>
       ) : (
         <p>Waiting for Tv Show details</p>
