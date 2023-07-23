@@ -12,7 +12,8 @@ Add FANTASY page.
 
 Add TV list on Home page
 Home page is currently the movies page
-TV and Movies and People page includes: 1. Top Rated, Upcoming, and Trending/Hot page
+TV and Movies and People page includes: 
+1. Top Rated, Upcoming, and Trending/Hot page
 
 to do: debug TV shows and favourites
 
@@ -20,4 +21,10 @@ tv shows rendering:
 to do. 
 tv show detail page.
 check favourite
-needs to refresh before showing page
+needs to refresh before showing page-- done
+
+
+issues: 
+
+TV show favourite to show on the favourite page
+Check reviews.
