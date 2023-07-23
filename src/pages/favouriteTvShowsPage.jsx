@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import TvShowListPageTemplate from "../components/templateTvShowListPage";
+import PageTemplate from "../components/templateTvShowListPage";
 import { Context } from "../contexts/Context";
 import { useQueries } from "react-query";
 import { getTvShow } from "../api/tmdb-api";
@@ -29,7 +29,7 @@ const FavouriteTvShowsPage = (props) => {
   const tvShows = favouriteTvShowQueries.map((q) => q.data);
 
   return (
-    <TvShowListPageTemplate
+    <PageTemplate
     title="Favourite Tv Shows"
     tvShows={tvShows}
     action={(tvShow) => {

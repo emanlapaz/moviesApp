@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import MovieListPageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/templateMovieListPage";
 import { getMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddMovieToFavouritesIcon from '../components/cardIcons/addMovieToFavourites'
 
 const MoviePage = (props) => {
-  const { data, error, isLoading, isError } = useQuery("discover", getMovies);
+  const { data, error, isLoading, isError } = useQuery("discover movies", getMovies);
 
   if (isLoading) {
     return <Spinner />;
@@ -18,7 +18,7 @@ const MoviePage = (props) => {
   const movies = data ? data.results : [];
 
   return (
-    <MovieListPageTemplate
+    <PageTemplate
       title="Discover Movies"
       movies={movies}
       action={(movie) => {
@@ -28,3 +28,5 @@ const MoviePage = (props) => {
   );
 };
 export default MoviePage;
+
+// changed page template

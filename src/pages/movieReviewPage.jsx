@@ -1,18 +1,18 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import TemplateMoviePage from "../components/templateMoviePage";
+import PageTemplate from "../components/templateMoviePage";
 import MovieReview from "../components/movieReview";
 
 const MovieReviewPage = (props) => {
   const { state : {movie, review } } = useLocation()
   return (
-    <TemplateMoviePage movie={movie}>
+    <PageTemplate movie={movie}>
       <MovieReview review={review} />
-    </TemplateMoviePage>
+    </PageTemplate>
   );
 };
 
 export default MovieReviewPage;
 
 
-// ? jsx
+// changed <TemplateMoviePage to <PageTemplate

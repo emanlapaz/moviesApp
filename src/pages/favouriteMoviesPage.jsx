@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import MovieListPageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/templateMovieListPage";
 import { Context } from "../contexts/Context";
 import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
@@ -29,7 +29,7 @@ const FavouriteMoviesPage = (props) => {
   const movies = favouriteMovieQueries.map((q) => q.data);
 
   return (
-    <MovieListPageTemplate
+    <PageTemplate
     title="Favourite Movies"
     movies={movies}
     action={(movie) => {

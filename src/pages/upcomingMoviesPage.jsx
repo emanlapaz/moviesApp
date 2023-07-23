@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MovieListPageTemplate from '../components/templateMovieListPage'
+import PageTemplate from '../components/templateMovieListPage'
 import { getUpcomingMovies } from "../api/tmdb-api";
 // import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 import AddMovieToPlaylistIcon from '../components/cardIcons/addMovieToPlaylist'
@@ -25,7 +25,7 @@ const UpcomingMoviesPage = (props) => {
 
 
   return (
-    <MovieListPageTemplate
+    <PageTemplate
       title='Upcoming Movies' 
       movies={movies}
       selectMovieFavourite={addMovieToPlaylists}
@@ -36,3 +36,5 @@ const UpcomingMoviesPage = (props) => {
   );
 };
 export default UpcomingMoviesPage;
+
+//change pagetemplate

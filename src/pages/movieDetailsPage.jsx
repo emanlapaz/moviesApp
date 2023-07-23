@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
-import TemplateMoviePage from "../components/templateMoviePage";
+import PageTemplate from "../components/templateMoviePage";
 import useMovie from "../hooks/useMovie";
 import { getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
@@ -27,9 +27,9 @@ const MovieDetailsPage = () => {
     <>
       {movie ? (
         <>
-          <TemplateMoviePage movie={movie}>
+          <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
-          </TemplateMoviePage>
+          </PageTemplate>
         </>
       ) : (
         <p>Waiting for movie details</p>

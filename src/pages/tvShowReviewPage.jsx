@@ -6,9 +6,9 @@ import TvShowReview from "../components/tvShowReview";
 const TvShowReviewPage = (props) => {
   const { state : {tvShow, review } } = useLocation()
   return (
-    <TemplateTvShowPage tvShow={tvShow}>
+    <PageTemplate tvShow={tvShow}>
       <TvShowReview review={review} />
-    </TemplateTvShowPage>
+    </PageTemplate>
   );
 };
 
