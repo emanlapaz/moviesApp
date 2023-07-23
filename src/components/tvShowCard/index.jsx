@@ -13,7 +13,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import Avatar from "@mui/material/Avatar";
-import { TvShowsContext } from "../../contexts/tvShowsContext";
+import { Context } from "../../contexts/Context";
 
 
 const styles = {
@@ -24,17 +24,17 @@ const styles = {
   },
 };
 export default function TvShowCard({ tvShow, action }) {
-  const { favourites, addToFavourites } = useContext(TvShowsContext);
+  const { tvShowFavourites, addTvShowToFavourites } = useContext(Context);
 
-  if (favourites.find((id) => id === tvShow.id)) {
-    tvShow.favourite = true;
+  if (tvShowFavourites.find((id) => id === tvShow.id)) {
+    tvShow.tvShowFavourite = true;
   } else {
-    tvShow.favourite = false
+    tvShow.tvShowFavourite = false
   }
 
   return (
     <Card sx={styles.card}>
-        <CardHeader sx={styles.header} avatar={tvShow.favourite ? (
+        <CardHeader sx={styles.header} avatar={tvShow.tvShowFavourite ? ( //changed from tvShow.favourite
           <Avatar sx={styles.avatar}>
             <FavoriteIcon />
           </Avatar>
@@ -42,7 +42,7 @@ export default function TvShowCard({ tvShow, action }) {
       }
       title={ 
       <Typography variant="h5" component="p">
-         {tvShow.title}{" "}
+         {tvShow.name}{" "}
       </Typography>}/>
       <CardMedia
         sx={styles.media}
@@ -84,3 +84,7 @@ export default function TvShowCard({ tvShow, action }) {
 
 
 // added TvShowcard
+// changed favourites to tvShowFavourites
+
+// changed title to name?
+// change tvShow.id

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { TvShowsContext } from "../../contexts/tvShowsContext";
+import { Context } from "../../contexts/Context";
 import IconButton from "@mui/material/IconButton";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 
 const AddTvShowToPlaylistIcon = ({ tvShow }) => {
-  const context = useContext(TvShowsContext);
+  const context = useContext(Context);
 
   const onUserSelect = (e) => {
     e.preventDefault();

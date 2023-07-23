@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { MoviesContext } from "../../contexts/moviesContext";
+import { Context } from "../../contexts/Context";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 
 const AddMovieToFavouritesIcon = ({ movie }) => {
-  const context = useContext(MoviesContext);
+  const context = useContext(Context);
 
   const onUserSelect = (e) => {
     e.preventDefault();

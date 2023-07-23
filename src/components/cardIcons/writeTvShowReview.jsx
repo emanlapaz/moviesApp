@@ -2,12 +2,12 @@ import React from "react";
 import RateReviewIcon from "@mui/icons-material/RateReview";
 import { Link } from "react-router-dom";
 
-const WriteTvShowReviewIcon = ({ movie }) => {
+const WriteTvShowReviewIcon = ({ tvShow }) => {
   return (
     <Link
       to={'/reviews/form'}
       state={{
-          movieId: movie.id,
+          movieId: tvShow.id,
         }}
     >
       <RateReviewIcon color="primary" fontSize="large" />

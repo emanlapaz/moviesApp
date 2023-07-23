@@ -18,8 +18,8 @@ const styles = {
   },
 };
 
-function TvShowListPageTemplate({ tvShows, title, action }) {
-  const [titleFilter, setTitleFilter] = useState("");
+function TvShowListPageTemplate({ tvShows, name, action }) {
+  const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -27,14 +27,14 @@ function TvShowListPageTemplate({ tvShows, title, action }) {
 
   let displayedTvShows = tvShows
     .filter((m) => {
-      return m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+      return m.name?.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
 
   const handleChange = (type, value) => {
-    if (type === "title") setTitleFilter(value);
+    if (type === "name") setNameFilter(value);
     else setGenreFilter(value);
   };
 
@@ -42,7 +42,7 @@ function TvShowListPageTemplate({ tvShows, title, action }) {
    <>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
-          <Header title={title} />
+          <Header title={name} />
         </Grid>
         <Grid item container spacing={5}>
         <TvShowList action={action} tvShows={displayedTvShows} />
@@ -64,7 +64,7 @@ function TvShowListPageTemplate({ tvShows, title, action }) {
       >
         <FilterCard
           onUserInput={handleChange}
-          titleFilter={titleFilter}
+          titleFilter={nameFilter}
           genreFilter={genreFilter}
         />
       </Drawer>
@@ -75,3 +75,4 @@ export default TvShowListPageTemplate;
 
 
 // added TvShowListPageTemplate
+// changed movie to name based on api

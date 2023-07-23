@@ -13,7 +13,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import Avatar from "@mui/material/Avatar";
-import { MoviesContext } from "../../contexts/moviesContext";
+import { Context } from "../../contexts/Context";
 
 
 const styles = {
@@ -24,7 +24,7 @@ const styles = {
   },
 };
 export default function MovieCard({ movie, action }) {
-  const { movieFavourites, addMovieToFavourites } = useContext(MoviesContext);
+  const { movieFavourites, addMovieToFavourites } = useContext(Context);
 
   if (movieFavourites.find((id) => id === movie.id)) {
     movie.movieFavourite = true;

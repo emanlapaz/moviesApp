@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import MovieListPageTemplate from "../components/templateMovieListPage";
-import { MoviesContext } from "../contexts/moviesContext";
+import { Context } from "../contexts/Context";
 import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
@@ -8,7 +8,7 @@ import RemoveMovieFromFavourites from "../components/cardIcons/removeMovieFromFa
 import WriteMovieReview from "../components/cardIcons/writeMovieReview";
 
 const FavouriteMoviesPage = (props) => {
-  const { favourites: movieIds } = useContext(MoviesContext);
+  const { movieFavourites: movieIds } = useContext(Context);
 
   // Create an array of queries and run them in parallel.
   const favouriteMovieQueries = useQueries(
