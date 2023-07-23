@@ -12,7 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
-import { getMovieGenres } from "../../api/tmdb-api";
+import { getTvShowGenres } from "../../api/tmdb-api";
 
 const styles = {
   root: {
@@ -27,8 +27,8 @@ const styles = {
   },
 };
 
-export default function FilterMoviesCard(props) {
-  const { data, error, isLoading, isError } = useQuery("genres", getMovieGenres);
+export default function FilterTvShowsCard(props) {
+  const { data, error, isLoading, isError } = useQuery("genres", getTvShowGenres);
 
   if (isLoading) {
     return <Spinner />;
@@ -48,7 +48,7 @@ export default function FilterMoviesCard(props) {
   };
 
   const handleTextChange = (e, props) => {
-    handleUserImput(e, "title", e.target.value);
+    handleUserImput(e, "title", e.target.value);  //? "name"??
   };
 
   const handleGenreChange = (e) => {
@@ -60,7 +60,7 @@ export default function FilterMoviesCard(props) {
       <CardContent>
         <Typography variant="h5" component="h1">
           <FilterAltIcon fontSize="large" />
-          Filter the movies.
+          Filter the tv shows.
         </Typography>
         <TextField
             sx={styles.formControl}
@@ -94,10 +94,13 @@ export default function FilterMoviesCard(props) {
         <CardContent>
           <Typography variant="h5" component="h1">
             <SortIcon fontSize="large" />
-            Sort the movies.
+            Sort the tv shows.
           </Typography>
         </CardContent>
       </Card>
       </>
   );
 }
+
+
+// added filter card

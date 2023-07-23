@@ -26,12 +26,13 @@ function MovieListPageTemplate({ movies, title, action }) {
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
-    .filter((m) => {
-      return m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
-    })
-    .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-    });
+  .filter((m) => {
+    // Check if 'title' property exists before using 'toLowerCase'
+    return m.title && m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+  })
+  .filter((m) => {
+    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+  });
 
   const handleChange = (type, value) => {
     if (type === "title") setTitleFilter(value);
@@ -72,3 +73,6 @@ function MovieListPageTemplate({ movies, title, action }) {
   );
 }
 export default MovieListPageTemplate;
+
+
+//added a check in title to toLowercase
