@@ -15,3 +15,9 @@ Home page is currently the movies page
 TV and Movies and People page includes: 1. Top Rated, Upcoming, and Trending/Hot page
 
 to do: debug TV shows and favourites
+
+tv shows rendering:
+to do. 
+tv show detail page.
+check favourite
+needs to refresh before showing page
