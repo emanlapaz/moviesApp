@@ -27,4 +27,5 @@ needs to refresh before showing page-- done
 issues: 
 
 TV show favourite to show on the favourite page
+add to playlist now working
 Check reviews.

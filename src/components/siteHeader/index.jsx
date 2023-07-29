@@ -34,6 +34,7 @@ const SiteHeader = () => {
     { label: "Upcoming", path: "/movies/upcoming" }, // added
     { label: "TV SHOWS", path: "/tvShows" },
     { label: "On the Air", path: "/tvShows/onTheAir" },
+    { label: "Casts", path: "/casts" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -49,10 +50,10 @@ const SiteHeader = () => {
       <AppBar position="fixed" elevation={0} color="primary">
         <Toolbar>
           <Typography variant="h4" sx={styles.title}>
-            TMDB Client
+            MOVision!
           </Typography>
           <Typography variant="h6" sx={styles.title}>
-            All you ever wanted to know about Movies!
+            Your one stop shop for Movies, TV shows and so much more!
           </Typography>
           {isMobile ? (
             <>

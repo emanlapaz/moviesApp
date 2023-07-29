@@ -3,10 +3,9 @@ import { useParams } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
 import useMovie from "../hooks/useMovie";
-import { getMovie } from '../api/tmdb-api'
+import { getMovie } from '../api/tmdb-api';
 import { useQuery } from "react-query";
-import Spinner from '../components/spinner'
-
+import Spinner from '../components/spinner';
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -23,8 +22,17 @@ const MovieDetailsPage = () => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
+
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: 'url("/src/images/pexels-dziana-hasanbekava-5480827.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+      }}
+    >
       {movie ? (
         <>
           <PageTemplate movie={movie}>
@@ -34,11 +42,11 @@ const MovieDetailsPage = () => {
       ) : (
         <p>Waiting for movie details</p>
       )}
-    </>
+    </div>
   );
 };
 
 export default MovieDetailsPage;
 
 
-// recheck original for the useMovie
+// fix image
