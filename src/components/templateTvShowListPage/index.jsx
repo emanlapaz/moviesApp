@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../headerMovieList";
+import Header from "../headerTvShowList";
 import FilterCard from "../filterMoviesCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-function TvShowListPageTemplate({ tvShows, name, action }) {
+function TvShowListPageTemplate({ tvShows, title, action }) {  //? title
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -42,7 +42,7 @@ function TvShowListPageTemplate({ tvShows, name, action }) {
    <>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
-          <Header title={name} />
+          <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
         <TvShowList action={action} tvShows={displayedTvShows} />

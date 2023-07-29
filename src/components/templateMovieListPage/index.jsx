@@ -27,7 +27,6 @@ function MovieListPageTemplate({ movies, title, action }) {
 
   let displayedMovies = movies
   .filter((m) => {
-    // Check if 'title' property exists before using 'toLowerCase'
     return m.title && m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
   })
   .filter((m) => {

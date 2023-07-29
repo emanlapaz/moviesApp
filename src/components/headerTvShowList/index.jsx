@@ -16,7 +16,7 @@ const styles = {
 };
 
 const Header = (props ) => {
-  const name = props.name
+  const title = props.title
 
   return (
     <Paper component="div" sx={styles.root}>
@@ -27,7 +27,7 @@ const Header = (props ) => {
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {name}
+        {title}
       </Typography>
       <IconButton
         aria-label="go forward"

@@ -2,7 +2,8 @@ import SiteHeader from './components/siteHeader'
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
-import HomePage from "./pages/moviePage";
+import MoviePage from "./pages/moviePage";
+import HomePage from "./pages/homePage";
 import MovieDetailPage from "./pages/movieDetailsPage";
 import TvShowDetailPage from "./pages/tvShowDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; 
@@ -16,6 +17,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import ContextProvider from "./contexts/Context";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import AddTvShowReviewPage from './pages/addTvShowReviewPage'
+import OnTheAirTvShowPage from './pages/onTheAirTvShowpage';
 
 
 const queryClient = new QueryClient({
@@ -43,12 +45,14 @@ const App = () => {
         <Route path="/movies/:id" element={<MovieDetailPage />} />
         <Route path="/tvShows/:id" element={<TvShowDetailPage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviePage />} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/movieReviews/:id" element={<MovieReviewPage/>} />
         <Route path="/movieReviews/form" element={<AddMovieReviewPage/>} />
         <Route path="/tvShowReviews/:id" element={<TvShowReviewPage/>} />
         <Route path="/tvShowReviews/form" element={<AddTvShowReviewPage/>} />
         <Route path="/tvShows" element={<TvShowPage />} />  
+        <Route path="/tvShows/onTheAir" element={<OnTheAirTvShowPage />} />  
       </Routes>
       </ContextProvider>
       </BrowserRouter>

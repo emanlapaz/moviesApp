@@ -28,10 +28,12 @@ const SiteHeader = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const menuOptions = [
-    { label: "Movies", path: "/" },
-    { label: "Favorites", path: "/movies/favourites" }, // add movies and TV together for favorites
+    { label: "Home", path: "/" },
+    { label: "Movies", path: "/movies" },
+    { label: "Movie Favorites", path: "/movies/favourites" }, // add movies and TV together for favorites
     { label: "Upcoming", path: "/movies/upcoming" }, // added
     { label: "TV SHOWS", path: "/tvShows" },
+    { label: "On the Air", path: "/tvShows/onTheAir" },
   ];
 
   const handleMenuSelect = (pageURL) => {
