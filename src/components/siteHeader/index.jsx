@@ -29,12 +29,14 @@ const SiteHeader = () => {
 
   const menuOptions = [
     { label: "Home", path: "/" },
+    { label: "WHATS HOT!", path: "/trendingMovies" },
     { label: "Movies", path: "/movies" },
     { label: "Movie Favorites", path: "/movies/favourites" }, // add movies and TV together for favorites
     { label: "Upcoming", path: "/movies/upcoming" }, // added
     { label: "TV SHOWS", path: "/tvShows" },
     { label: "On the Air", path: "/tvShows/onTheAir" },
     { label: "Casts", path: "/casts" },
+  
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -44,10 +46,9 @@ const SiteHeader = () => {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   return (
     <>
-      <AppBar position="fixed" elevation={0} color="primary">
+    <AppBar position="fixed" elevation={0} color="primary">
         <Toolbar>
           <Typography variant="h4" sx={styles.title}>
             MOVision!
@@ -97,8 +98,12 @@ const SiteHeader = () => {
               {menuOptions.map((opt) => (
                 <Button
                   key={opt.label}
-                  color="inherit"
+                  color={opt.label === "WHATS HOT!" ? "secondary" : "inherit"}
                   onClick={() => handleMenuSelect(opt.path)}
+                  sx={{
+                    fontWeight: opt.label === "WHATS HOT!" ? "bold" : "normal",
+                    color: opt.label === "WHATS HOT!" ? "#ff0000" : "inherit",
+                  }}
                 >
                   {opt.label}
                 </Button>

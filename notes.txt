@@ -29,3 +29,7 @@ issues:
 TV show favourite to show on the favourite page
 add to playlist now working
 Check reviews.
+
+
+
+trending movie page rendering>>  ADD tv AND PEOPLE PAGE

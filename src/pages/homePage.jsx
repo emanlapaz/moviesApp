@@ -16,7 +16,7 @@ const styles = {
     justifyContent: "center",
     minHeight: "100vh",
     padding: "20px",
-    // Add the background image
+   
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",

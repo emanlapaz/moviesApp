@@ -180,10 +180,26 @@ export const getUpcomingMovies = () => {
   });
 };
 
-// get all 
+
 export const getOnTheAirTvShows = () => {
   return fetch(
   "https://api.themoviedb.org/3/tv/on_the_air?api_key=" +
+    import.meta.env.VITE_TMDB_KEY +
+    "&language=en-US&page=2"
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+  });
+};
+
+export const getAllTrending = () => {
+  return fetch(
+  "https://api.themoviedb.org/3/trending/all/week?api_key=" +
     import.meta.env.VITE_TMDB_KEY +
     "&language=en-US&page=1"
     ).then((response) => {
@@ -197,6 +213,21 @@ export const getOnTheAirTvShows = () => {
   });
 };
 
+export const getTrendingMovies = () => {
+  return fetch(
+  "https://api.themoviedb.org/3/trending/all/week?api_key=" +
+    import.meta.env.VITE_TMDB_KEY +
+    "&language=en-US&page=1"
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+  });
+};
 
 //changed id to movie_id and tvShow_id
 
