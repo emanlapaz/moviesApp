@@ -1,5 +1,4 @@
-import React from "react"; 
-//import React, { useState, useEffect } from "react";
+import React from "react";
 import TvShowHeader from "../headerTvShow";
 import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
@@ -9,6 +8,17 @@ import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
 const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100vh",
+    padding: "15px",
+    backgroundImage: 'url("/src/images/pexels-dziana-hasanbekava-5480827.jpg")', // Update this path
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
   gridListRoot: {
     display: "flex",
     flexWrap: "wrap",
@@ -36,7 +46,7 @@ const TemplateTvShowPage = ({ tvShow, children }) => {
   const images = data.posters 
 
   return (
-    <>
+    <div style={styles.container}>
       <TvShowHeader tvShow={tvShow} />
 
       <Grid container spacing={5} style={{ padding: "15px" }}>
@@ -63,7 +73,7 @@ const TemplateTvShowPage = ({ tvShow, children }) => {
           {children}
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 };
 

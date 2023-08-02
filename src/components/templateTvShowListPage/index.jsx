@@ -7,6 +7,17 @@ import Drawer from "@mui/material/Drawer";
 import TvShowList from "../tvShowList";
 
 const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100vh",
+    padding: "20px",
+    backgroundImage: 'url("/src/images/pexels-dziana-hasanbekava-5480827.jpg")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
   root: {
     padding: "20px",
   },
@@ -18,7 +29,7 @@ const styles = {
   },
 };
 
-function TvShowListPageTemplate({ tvShows, title, action }) {  //? title
+function TvShowListPageTemplate({ tvShows, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -39,14 +50,13 @@ function TvShowListPageTemplate({ tvShows, title, action }) {  //? title
   };
 
   return (
-   <>
+    <div style={styles.container}>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-        <TvShowList action={action} tvShows={displayedTvShows} />
-
+          <TvShowList action={action} tvShows={displayedTvShows} />
         </Grid>
       </Grid>
       <Fab
@@ -68,11 +78,8 @@ function TvShowListPageTemplate({ tvShows, title, action }) {  //? title
           genreFilter={genreFilter}
         />
       </Drawer>
-    </>  
+    </div>
   );
 }
+
 export default TvShowListPageTemplate;
-
-
-// added TvShowListPageTemplate
-// changed movie to name based on api

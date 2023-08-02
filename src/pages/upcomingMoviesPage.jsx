@@ -23,7 +23,6 @@ const UpcomingMoviesPage = (props) => {
   localStorage.setItem("moviePlaylists", JSON.stringify(moviePlaylists));
   const addMovieToPlaylists = (movieId) => true;
 
-
   return (
     <PageTemplate
       title='Upcoming Movies' 
@@ -34,6 +33,7 @@ const UpcomingMoviesPage = (props) => {
       }}
     />
   );
+  
 };
 export default UpcomingMoviesPage;
 

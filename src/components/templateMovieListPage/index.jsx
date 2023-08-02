@@ -7,6 +7,17 @@ import Drawer from "@mui/material/Drawer";
 import MovieList from "../movieList";
 
 const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100vh",
+    padding: "20px",
+    backgroundImage: 'url("/src/images/pexels-dziana-hasanbekava-5480827.jpg")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
   root: {
     padding: "20px",
   },
@@ -26,12 +37,12 @@ function MovieListPageTemplate({ movies, title, action }) {
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
-  .filter((m) => {
-    return m.title && m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
-  })
-  .filter((m) => {
-    return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-  });
+    .filter((m) => {
+      return m.title && m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+    })
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    });
 
   const handleChange = (type, value) => {
     if (type === "title") setTitleFilter(value);
@@ -39,14 +50,13 @@ function MovieListPageTemplate({ movies, title, action }) {
   };
 
   return (
-   <>
+    <div style={styles.container}>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-        <MovieList action={action} movies={displayedMovies} />
-
+          <MovieList action={action} movies={displayedMovies} />
         </Grid>
       </Grid>
       <Fab
@@ -68,10 +78,8 @@ function MovieListPageTemplate({ movies, title, action }) {
           genreFilter={genreFilter}
         />
       </Drawer>
-    </>  
+    </div>
   );
 }
+
 export default MovieListPageTemplate;
-
-
-//added a check in title to toLowercase
