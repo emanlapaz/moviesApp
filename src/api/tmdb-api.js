@@ -215,7 +215,23 @@ export const getAllTrending = () => {
 
 export const getTrendingMovies = () => {
   return fetch(
-  "https://api.themoviedb.org/3/trending/all/week?api_key=" +
+  "https://api.themoviedb.org/3/trending/movie/week?api_key=" +
+    import.meta.env.VITE_TMDB_KEY +
+    "&language=en-US&page=2"
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+  });
+};
+
+export const getTrendingTvShows = () => {
+  return fetch(
+  "https://api.themoviedb.org/3/trending/tv/week?api_key=" +
     import.meta.env.VITE_TMDB_KEY +
     "&language=en-US&page=1"
     ).then((response) => {
@@ -228,16 +244,3 @@ export const getTrendingMovies = () => {
       throw error
   });
 };
-
-//changed id to movie_id and tvShow_id
-
-// Top rated movies: https://api.themoviedb.org/3/movie/top_rated
-// Top rated TV: https://api.themoviedb.org/3/tv/top_rated
-
-
-//Trending Page includes trending all.
-// timewindow = day or week
-// Trending movies: https://api.themoviedb.org/3/trending/movies/{time_window}
-// Trending TV: https://api.themoviedb.org/3/trending/tv/{time_window}
-// Trending people: https://api.themoviedb.org/3/trending/person/{time_window}
-// trending All: https://api.themoviedb.org/3/trending/all/{time_window}

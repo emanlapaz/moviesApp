@@ -1,40 +1,18 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import PageTemplate from "../components/templateMovieListPage";
-import { getTrendingMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
-import Spinner from "../components/spinner";
-import AddMovieToFavouritesIcon from "../components/cardIcons/addMovieToFavourites";
+import { getTrendingMovies, getTrendingTvShows } from "../api/tmdb-api";
+import MovieListPage from "../pages/trendingMoviesPage";
+import TvShowListPage from "../pages/trendingTvShowsPage";
 
-const TrendingMoviePage = (props) => {
-  const { data, error, isLoading, isError } = useQuery("trending movies", getTrendingMovies);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-  if (isError) {
-    return <h1>{error.message}</h1>;
-  }
-
-  const movies = data ? data.results : [];
+const TrendingMoviePage = () => {
+  const { data: moviesData, error: moviesError, isLoading: moviesLoading } = useQuery("trending movies", getTrendingMovies);
+  const { data: tvShowsData, error: tvShowsError, isLoading: tvShowsLoading } = useQuery("trending tv shows", getTrendingTvShows);
 
   return (
-    <div
-      style={{
-        backgroundImage: 'url("/src/images/pexels-dziana-hasanbekava-5480827.jpg")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <PageTemplate
-        title="Trending Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddMovieToFavouritesIcon movie={movie} />;
-        }}
-      />
-    </div>
+    <>
+      <MovieListPage moviesData={moviesData} moviesError={moviesError} moviesLoading={moviesLoading} />
+      <TvShowListPage tvShowsData={tvShowsData} tvShowsError={tvShowsError} tvShowsLoading={tvShowsLoading} />
+    </>
   );
 };
 
