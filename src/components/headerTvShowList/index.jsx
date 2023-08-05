@@ -1,6 +1,6 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -15,30 +15,30 @@ const styles = {
   },
 };
 
-const Header = (props ) => {
-  const title = props.title
+const Header = (props) => {
+  const { name, currentPage, totalPages, handlePageChange } = props;
 
   return (
     <Paper component="div" sx={styles.root}>
       <IconButton
-        aria-label="go back"
+        aria-label="previous page"
+        onClick={() => handlePageChange(currentPage - 1)}
       >
-        <ArrowBackIcon color="primary" fontSize="large" />
+        <KeyboardArrowLeftIcon color="primary" fontSize="large" />
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {title}
+        {name}
       </Typography>
+
       <IconButton
-        aria-label="go forward"
+        aria-label="next page"
+        onClick={() => handlePageChange(currentPage + 1)}
       >
-        <ArrowForwardIcon color="primary" fontSize="large" />
+        <KeyboardArrowRightIcon color="primary" fontSize="large" />
       </IconButton>
     </Paper>
   );
 };
 
 export default Header;
-
-
-//title to name

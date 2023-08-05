@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "../headerTvShowList";
 import FilterCard from "../filterMoviesCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import TvShowList from "../tvShowList";
-import { getTvShows } from "../../api/tmdb-api";
 
 const styles = {
   container: {
@@ -30,58 +29,31 @@ const styles = {
   },
 };
 
-function TvShowListPageTemplate({ title, action }) {
-  const [tvShows, setTvShows] = useState([]);
+function FavTvShowPageTemplate({ tvShows, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  useEffect(() => {
-    fetchTvShows();
-  }, [currentPage]);
+  const genreId = Number(genreFilter);
 
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-    }
-  };
-
-  const fetchTvShows = async () => {
-    try {
-      const data = await getTvShows(currentPage);
-      setTvShows(data.results);
-      setTotalPages(data.total_pages);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  let displayedTvShows = tvShows
+    .filter((m) => {
+      return m.name?.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+    })
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    });
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
     else setGenreFilter(value);
   };
 
-  const displayedTvShows = tvShows
-    .filter((m) => {
-      return m.name?.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
-    })
-    .filter((m) => {
-      const genreId = Number(genreFilter);
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-    });
-
   return (
     <div style={styles.container}>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
-          <Header
-            title={title}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            handlePageChange={handlePageChange}
-          />
+          <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
           <TvShowList action={action} tvShows={displayedTvShows} />
@@ -110,4 +82,4 @@ function TvShowListPageTemplate({ title, action }) {
   );
 }
 
-export default TvShowListPageTemplate;
+export default FavTvShowPageTemplate;

@@ -1,6 +1,6 @@
-export const getMovies = () => {
+export const getMovies = (pageNumber) => {
   return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageNumber}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -8,13 +8,13 @@ export const getMovies = () => {
     return response.json();
   })
   .catch((error) => {
-     throw error
+     throw error;
   });
 };
 
-export const getTvShows = () => {
+export const getTvShows = (pageNumber) => {
   return fetch(
-    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageNumber}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -22,9 +22,10 @@ export const getTvShows = () => {
     return response.json();
   })
   .catch((error) => {
-     throw error
+     throw error;
   });
 };
+
 
 export const getCast = (args) => {
   console.log(args)
@@ -58,6 +59,8 @@ export const getPopularCasts = () => {
       throw error
   });
 };
+
+
 
 export const getMovie = (args) => {
   console.log(args)
