@@ -4,10 +4,10 @@ import { getPopularCasts } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddCastToFavouritesIcon from "../components/cardIcons/addCastToFavourites";
-import PageTemplate from "../components/templateCastListPage";
+import  CastListPageTemplate from "../components/templateCastListPage";
 
 const PopularCastPage = (props) => {
-  const { data, error, isLoading, isError } = useQuery("popular", getPopularCasts);
+  const { data, error, isLoading, isError } = useQuery("popular people", getPopularCasts);
 
   if (isLoading) {
     return <Spinner />;
@@ -20,7 +20,7 @@ const PopularCastPage = (props) => {
 
   return (
 
-      <PageTemplate
+      <CastListPageTemplate
         title="Popular People"
         casts={casts}
         action={(cast) => {

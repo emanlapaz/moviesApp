@@ -36,7 +36,7 @@ const CastDetailsPage = () => {
       {cast ? (
         <>
           <PageTemplate cast={cast}>
-            <MovieDetails cast={cast} />
+            <CastDetails cast={cast} />
           </PageTemplate>
         </>
       ) : (

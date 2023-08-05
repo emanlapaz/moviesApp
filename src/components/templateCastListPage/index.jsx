@@ -4,7 +4,7 @@ import FilterCastsCard from "../filterCastsCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import CastList from "../castList";
+import CastCard from "../castCard";
 
 const styles = {
   container: {
@@ -29,24 +29,29 @@ const styles = {
   },
 };
 
-function CastListPageTemplate({ casts, title, action }) {
+function CastListPageTemplate({ casts, title }) {
+  const [filteredCasts, setFilteredCasts] = useState(casts);
   const [titleFilter, setTitleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const genreId = Number(genreFilter);
+  const handleFilterChange = (type, value) => {
+    if (type === "title") {
+      setTitleFilter(value);
+    } else {
+      setGenreFilter(value);
+    }
+    filterCasts(value);
+  };
 
-  let displayedCasts = casts
-    .filter((m) => {
-      return m.title && m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
-    })
-    .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+  const filterCasts = (genreId) => {
+    const filteredCasts = casts.filter((cast) => {
+      return (
+        cast.name.toLowerCase().includes(titleFilter.toLowerCase()) &&
+        (genreId === "0" || cast.gender === parseInt(genreId))
+      );
     });
-
-  const handleChange = (type, value) => {
-    if (type === "title") setTitleFilter(value);
-    else setGenreFilter(value);
+    setFilteredCasts(filteredCasts);
   };
 
   return (
@@ -56,7 +61,11 @@ function CastListPageTemplate({ casts, title, action }) {
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-          <CastList action={action} casts={displayedCasts} />
+          {filteredCasts.map((cast) => (
+            <Grid key={cast.id} item xs={12} sm={6} md={4} lg={3}>
+              <CastCard cast={cast} />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
       <Fab
@@ -72,11 +81,7 @@ function CastListPageTemplate({ casts, title, action }) {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       >
-        <FilterCastsCard
-          onUserInput={handleChange}
-          titleFilter={titleFilter}
-          genreFilter={genreFilter}
-        />
+        <FilterCastsCard onUserInput={handleFilterChange} />
       </Drawer>
     </div>
   );

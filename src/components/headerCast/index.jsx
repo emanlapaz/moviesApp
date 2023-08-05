@@ -1,61 +1,47 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import HomeIcon from "@mui/icons-material/Home";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import Grid from "@mui/material/Grid";
 
 const styles = {
-  root: {
+  header: {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
-    flexWrap: "wrap",
-    padding: 1.5,
+    marginBottom: "20px",
   },
-  heartIcon: {
-    color: "red",
-    marginRight: "8px",
+  avatar: {
+    width: "100px",
+    height: "100px",
+    marginRight: "10px",
   },
 };
 
-const CastHeader = (props) => {
-  const cast = props.cast;
-
-  const castFavorites = JSON.parse(localStorage.getItem("castFavourites")) || [];
-
-  const isFavorite = castFavorites.some((castFavorite) => castFavorite.id === cast.id);
-
+const CastHeader = ({ cast }) => {
   return (
-    <Paper component="div" sx={styles.root}>
-      <IconButton aria-label="go back">
-        <ArrowBackIcon color="primary" fontSize="large" />
-      </IconButton>
-  
-      <Typography variant="h4" component="h3">
-        {isFavorite && (
-          <FavoriteIcon
-            color="error"
-            fontSize="large"
-            sx={styles.heartIcon}
-          />
-        )}
-        {cast.name}{"   "} 
-        <a href={cast.homepage}> 
-          <HomeIcon color="primary" fontSize="large" />
-        </a>
-        <br />
-        <span>{`${cast.known_for_department}`} </span> 
+    <Grid item xs={12}>
+      <div style={styles.header}>
+        <Avatar
+          alt={cast.name}
+          src={
+            cast.profile_path
+              ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
+              : "https://via.placeholder.com/150x150"
+          }
+          sx={styles.avatar}
+        />
+        <Typography variant="h4" component="h3">
+          {cast.name}
+        </Typography>
+      </div>
+      <Typography variant="h6" component="p">
+        {cast.known_for_department}
       </Typography>
-  
-      <IconButton aria-label="go forward">
-        <ArrowForwardIcon color="primary" fontSize="large" />
-      </IconButton>
-    </Paper>
+      <Typography variant="body1" component="p">
+        Popularity: {cast.popularity}
+      </Typography>
+    </Grid>
   );
-  
 };
 
 export default CastHeader;

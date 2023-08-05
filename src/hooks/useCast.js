@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import {getPopularCasts} from '../api/tmdb-api'
+import {getCast} from '../api/tmdb-api'
 
 const useCast = id => {
   const [cast, setCast] = useState(null);
   useEffect(() => {
-    getPopularCasts(id).then(cast => {
+    getCast(id).then(cast => {
       setCast(cast);
     });
   }, [id]);
