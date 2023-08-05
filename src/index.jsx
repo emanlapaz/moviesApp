@@ -6,6 +6,7 @@ import MoviePage from './pages/moviePage';
 import TrendingMoviePage from './pages/trendingPage';
 import HomePage from './pages/homePage';
 import MovieDetailPage from './pages/movieDetailsPage';
+import CastDetailPage from './pages/castDetailsPage';
 import TvShowDetailPage from './pages/tvShowDetailsPage';
 import FavouriteMoviesPage from './pages/favouriteMoviesPage';
 import FavouriteTvShowsPage from './pages/favouriteTvShowsPage'; // NEW
@@ -19,6 +20,7 @@ import ContextProvider from './contexts/Context';
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddTvShowReviewPage from './pages/addTvShowReviewPage';
 import OnTheAirTvShowPage from './pages/onTheAirTvShowpage';
+import PopularCastPage from './pages/popularCastPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +54,8 @@ const App = () => {
             <Route path="/tvShows" element={<TvShowPage />} />
             <Route path="/tvShows/onTheAir" element={<OnTheAirTvShowPage />} />
             <Route path="/trendingMovies" element={<TrendingMoviePage />} />
+            <Route path="/casts" element={<PopularCastPage />} />
+            <Route path="/casts/:id" element={<CastDetailPage />} />
           </Routes>
         </ContextProvider>
       </BrowserRouter>

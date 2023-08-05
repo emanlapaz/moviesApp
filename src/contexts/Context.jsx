@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from "react";
 
-export const Context = React.createContext(null); //moviecontext to context
+export const Context = React.createContext(null); 
 
 const ContextProvider = (props) => {
-  // State variables movies
+
   const [myMovieReviews, setMyMovieReviews] = useState({});
   const [movieFavourites, setMovieFavourites] = useState([]);
   const [moviePlaylists, setMoviePlaylists] = useState([]);
 
-  //tvshows
   const [myTvShowReviews, setMyTvShowReviews] = useState({});
   const [tvShowFavourites, setTvShowFavourites] = useState([]);
   const [tvShowPlaylists, setTvShowPlaylists] = useState([]);
 
-  // Side effect for logging favourites and playlists
+  const [myCastReviews, setMyCastReviews] = useState({});
+  const [castFavourites, setCastFavourites] = useState([]);
+  const [castPlaylists, setCastPlaylists] = useState([]);
+
+
   useEffect(() => {
     console.log("Favourite Movies:", movieFavourites);
     console.log("Movie Playlists:", moviePlaylists);
   }, [movieFavourites, moviePlaylists]);
 
-    // Side effect for logging favourites and playlists
+   
     useEffect(() => {
       console.log("Tv Show Favourites:", tvShowFavourites);
       console.log("TV Show Playlists:", tvShowPlaylists);
     }, [tvShowFavourites, tvShowPlaylists]);
 
-  // Function to add a movie to favourites
+    useEffect(() => {
+      console.log("Favourite Casts:", castFavourites);
+      console.log("Cast Playlists:", castPlaylists);
+    }, [castFavourites, castPlaylists]);
+
+
   const addMovieToFavourites = (movie) => {
     let updatedMovieFavourites = [...movieFavourites];
     if (!movieFavourites.includes(movie.id)) {
@@ -42,7 +50,14 @@ const ContextProvider = (props) => {
     setTvShowFavourites(updatedTvShowFavourites);
   };
 
-  // Function to add a movie to playlists
+  const addCastToFavourites = (cast) => {
+    let updatedCastFavourites = [...castFavourites];
+    if (!castFavourites.includes(cast.id)) {
+      updatedCastFavourites.push(cast.id);
+    }
+    setCastFavourites(updatedCastFavourites);
+  };
+
   const addMovieToPlaylists = (movie) => {
     let updatedMoviePlaylists = [...moviePlaylists];
     if (!moviePlaylists.includes(movie.id)) {
@@ -59,7 +74,14 @@ const ContextProvider = (props) => {
     setTvShowPlaylists(updatedTvShowPlaylists);
   };
 
-  // Function to remove a movie from favourites
+  const addCastToPlaylists = (cast) => {
+    let updatedCastPlaylists = [...castPlaylists];
+    if (!castPlaylists.includes(cast.id)) {
+      updatedCastPlaylists.push(cast.id);
+    }
+    setCastPlaylists(updatedCastPlaylists);
+  };
+
   const removeMovieFromFavourites = (movie) => {
     setMovieFavourites(movieFavourites.filter((mId) => mId !== movie.id));
   };
@@ -68,7 +90,11 @@ const ContextProvider = (props) => {
     setTvShowFavourites(tvShowFavourites.filter((mId) => mId !== tvShow.id));  // what is mId?
   };
 
-  // Function to add a review for a movie
+  const removeCastFromFavourites = (cast) => {
+    setCastFavourites(castFavourites.filter((mId) => mId !== cast.id));
+  };
+
+
   const addMovieReview = (movie, movieReview) => {
     setMyMovieReviews({ ...myMovieReviews, [movie.id]: movieReview });
   };
@@ -77,16 +103,23 @@ const ContextProvider = (props) => {
     setMyTvShowReviews({ ...myTvShowReviews, [tvShow.id]: tvShowReview });
   };
 
-  // Provide the context value to the child components
+  const addCastReview = (cast, castReview) => {
+    setMyCastReviews({ ...myCastReviews, [cast.id]: castReview });
+  };
+
+
   return (
     <Context.Provider
       value={{
         movieFavourites,
         moviePlaylists,
-        //
+        
         tvShowFavourites,
         tvShowPlaylists,
-        //
+        
+        castFavourites,
+        castPlaylists,
+        
         addMovieToFavourites,
         addMovieToPlaylists,
         removeMovieFromFavourites,
@@ -96,6 +129,11 @@ const ContextProvider = (props) => {
         addTvShowToPlaylists,
         removeTvShowFromFavourites,
         addTvShowReview,
+
+        addCastToFavourites,
+        addCastToPlaylists,
+        removeCastFromFavourites,
+        addCastReview,
       }}
     >
       {props.children}
@@ -104,7 +142,3 @@ const ContextProvider = (props) => {
 };
 
 export default ContextProvider;
-
-
-
-//merged TV and Movies Context
