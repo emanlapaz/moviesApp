@@ -28,5 +28,3 @@ const TvShowListPage = (props) => {
   );
 };
 export default TvShowListPage;
-
-// added TvShowPage
