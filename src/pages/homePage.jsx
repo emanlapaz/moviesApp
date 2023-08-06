@@ -59,6 +59,11 @@ const HomePage = () => {
               Explore Casts
             </Button>
           </Link>
+          <Link to="/trending">
+            <Button variant="contained" color="primary" sx={styles.button}>
+              Whats hot?
+            </Button>
+          </Link>
         </Stack>
       </Box>
     </>
