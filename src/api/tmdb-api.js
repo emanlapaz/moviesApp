@@ -193,24 +193,7 @@ export const getCastImages = ({ queryKey }) => {
  });
 };
 
-export const getCombinedCredits = ({ queryKey }) => {
-  const [, idPart] = queryKey;
-  const { id } = idPart;
-  return fetch(
-    `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
-  ).then( (response) => {
-    if (!response.ok) {
-      throw new Error(response.json().message);
-    }
-    return response.json();
-
-  })
-  .catch((error) => {
-    throw error
- });
-};
-
-export const getMovieCredits = ({ queryKey }) => {
+export const getPersonMovie = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
   return fetch(
@@ -227,11 +210,45 @@ export const getMovieCredits = ({ queryKey }) => {
  });
 };
 
-export const getTvShowCredits = ({ queryKey }) => {
+export const getPersonTvShow = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
   return fetch(
     `https://api.themoviedb.org/3/person/${id}/tv_credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then( (response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+
+  })
+  .catch((error) => {
+    throw error
+ });
+};
+
+export const getMovieCredits = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then( (response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+
+  })
+  .catch((error) => {
+    throw error
+ });
+};
+
+export const getTvShowCredits = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
   ).then( (response) => {
     if (!response.ok) {
       throw new Error(response.json().message);

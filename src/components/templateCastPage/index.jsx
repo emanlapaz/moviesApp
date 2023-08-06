@@ -4,7 +4,7 @@ import CastHeader from "../headerCast";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { getCastImages, getMovieCredits, getTvShowCredits } from "../../api/tmdb-api";
+import { getCastImages, getPersonMovie, getPersonTvShow } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
 import Typography from "@mui/material/Typography";
@@ -55,12 +55,12 @@ const TemplateCastPage = ({ cast, children }) => {
 
   const { data: creditsData, error: creditsError, isLoading: creditsLoading, isError: creditsIsError } = useQuery(
     ["credits", { id: cast.id }],
-    getMovieCredits
+    getPersonMovie
   );
 
   const { data: tvCreditsData, error: tvCreditsError, isLoading: tvCreditsLoading, isError: tvCreditsIsError } = useQuery(
     ["tvCredits", { id: cast.id }],
-    getTvShowCredits
+    getPersonTvShow
   );
 
   if (imagesLoading || creditsLoading || tvCreditsLoading) {
