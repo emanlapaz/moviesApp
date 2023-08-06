@@ -90,14 +90,15 @@ const MovieDetails = ({ movie }) => {
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+    <Paper>
+    <Typography variant="h4" component="h3">
         Overview
       </Typography>
-
       <Typography variant="h6" component="p">
         {movie.overview}
       </Typography>
-
+    </Paper>
+ <br/>
       <Paper component="ul" sx={styles.chipSet}>
         <li>
           <Chip label="Genres" sx={styles.chipLabel} color="primary" />
@@ -107,9 +108,7 @@ const MovieDetails = ({ movie }) => {
             <Chip label={g.name} />
           </li>
         ))}
-      </Paper>
-      <Paper component="ul" sx={styles.chipSet}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+                <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
           label={`${movie.revenue.toLocaleString()}`}
@@ -120,9 +119,10 @@ const MovieDetails = ({ movie }) => {
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
+      <br/>
       <Paper>
-        <Typography variant="h6" component="p">
-          Cast:
+        <Typography variant="h4" component="p">
+          Casts:
         </Typography>
         <Grid container spacing={2}>
           {credits.map((cast) => (
@@ -148,8 +148,9 @@ const MovieDetails = ({ movie }) => {
           ))}
         </Grid>
       </Paper>
+      <br/>
       <Paper>
-        <Typography variant="h6" component="p">
+        <Typography variant="h4" component="p">
           Similar Movies:
         </Typography>
         <Grid container spacing={2}>
