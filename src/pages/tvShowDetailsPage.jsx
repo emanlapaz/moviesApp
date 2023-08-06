@@ -24,7 +24,15 @@ const TvShowDetailsPage = () => {
     return <h1>{error.message}</h1>;
   }
   return (
-    <>
+    <div
+    style={{
+      backgroundImage: 'url("/src/images/pexels-dziana-hasanbekava-5480827.jpg")',
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      minHeight: "100vh",
+    }}
+  >
       {tvShow ? (
         <>
           <PageTemplate tvShow={tvShow}>
@@ -34,7 +42,7 @@ const TvShowDetailsPage = () => {
       ) : (
         <p>Waiting for Tv Show details</p>
       )}
-    </>
+   </div>
   );
 };
 

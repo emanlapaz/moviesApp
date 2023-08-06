@@ -12,7 +12,6 @@ import MovieReviews from "../movieReviews";
 import { useQuery } from "react-query";
 import { getMovieCredits, getSimilarMovie } from "../../api/tmdb-api"; // Import getSimilarMovie
 import { Link } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -159,7 +158,7 @@ const MovieDetails = ({ movie }) => {
               <Card style={styles.card}>
                 <CardMedia
                   component={Link}
-                  to={`/movies/${similarMovie.id}`} // Assuming you have a movie details page at this route
+                  to={`/movies/${similarMovie.id}`}
                   style={styles.cardImage}
                   image={
                     similarMovie.poster_path

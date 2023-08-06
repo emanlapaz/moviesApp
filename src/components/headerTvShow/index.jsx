@@ -4,7 +4,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const styles = {
@@ -18,6 +17,19 @@ const styles = {
   heartIcon: {
     color: "red",
     marginRight: "8px",
+  },
+  officialWebsiteButton: {
+    fontSize: "18px",
+    fontFamily: "Arial, sans-serif",
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    padding: "8px 16px",
+    borderRadius: "4px",
+    textDecoration: "none",
+    display: "inline-block",
+    cursor: "pointer",
   },
 };
 
@@ -43,11 +55,14 @@ const TvShowHeader = (props) => {
           />
         )}
         {tvShow.name}{"   "}
-        <a href={tvShow.homepage}>
-          <HomeIcon color="primary" fontSize="large" />
-        </a>
         <br />
         <span>{`${tvShow.tagline}`} </span>
+        <br/>
+        {tvShow.homepage && (
+          <a href={tvShow.homepage}>
+            <button style={styles.officialWebsiteButton}>Official Website</button>
+          </a>
+        )}
       </Typography>
 
       <IconButton aria-label="go forward">

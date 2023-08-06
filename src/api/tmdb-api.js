@@ -248,18 +248,18 @@ export const getTvShowCredits = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
-  ).then( (response) => {
+    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
     }
     return response.json();
-
   })
   .catch((error) => {
-    throw error
- });
+    throw error;
+  });
 };
+
 
 export const getMovieReviews = (id) => {
   return fetch(
@@ -386,6 +386,24 @@ export const getSimilarMovie = (args) => {
   const { id } = idPart;
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error
+ });
+};
+
+
+export const getSimilarTvShow = (args) => {
+  console.log(args)
+  const [, idPart] = args.queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
