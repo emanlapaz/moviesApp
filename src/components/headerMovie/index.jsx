@@ -24,10 +24,8 @@ const styles = {
 const MovieHeader = (props) => {
   const movie = props.movie;
 
-  // Retrieve favorites from local storage
   const movieFavorites = JSON.parse(localStorage.getItem("movieFavourites")) || [];
 
-  // Check if movie is marked as a favorite
   const isFavorite = movieFavorites.some((movieFavorite) => movieFavorite.id === movie.id);
 
   return (

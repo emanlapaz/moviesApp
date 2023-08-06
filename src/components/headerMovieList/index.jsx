@@ -4,6 +4,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
 const styles = {
   root: {
@@ -20,6 +21,7 @@ const Header = (props) => {
 
   return (
     <Paper component="div" sx={styles.root}>
+
       <IconButton aria-label="previous page" onClick={() => handlePageChange(currentPage - 1)}>
         <KeyboardArrowLeftIcon color="primary" fontSize="large" />
       </IconButton>
@@ -31,6 +33,11 @@ const Header = (props) => {
       <IconButton aria-label="next page" onClick={() => handlePageChange(currentPage + 1)}>
         <KeyboardArrowRightIcon color="primary" fontSize="large" />
       </IconButton>
+      <Grid item xs={12}>
+          <Typography variant="body1" align="center">
+            Page {currentPage} of {totalPages}
+          </Typography>
+        </Grid>
     </Paper>
   );
 };

@@ -44,22 +44,20 @@ export const getCast = (args) => {
  });
 };
 
-export const getPopularCasts = () => {
+export const getPopularCasts = (pageNumber) => {
   return fetch(
-  "https://api.themoviedb.org/3/person/popular?api_key=" +
-    import.meta.env.VITE_TMDB_KEY +
-    "&language=en-US&page=1"
-    ).then((response) => {
+    `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${pageNumber}`
+  )
+    .then((response) => {
       if (!response.ok) {
         throw new Error(response.json().message);
       }
       return response.json();
     })
     .catch((error) => {
-      throw error
-  });
+      throw error;
+    });
 };
-
 
 
 export const getMovie = (args) => {
@@ -316,4 +314,18 @@ export const getTrendingTvShows = () => {
   });
 };
 
-
+export const getTrendingCasts = () => {
+  return fetch(
+  "https://api.themoviedb.org/3/trending/person/week?api_key=" +
+    import.meta.env.VITE_TMDB_KEY +
+    "&language=en-US&page=1"
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+  });
+};

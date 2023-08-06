@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
 import { getMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
@@ -20,14 +19,6 @@ const MoviePage = (props) => {
   const movies = data ? data.results : [];
 
   return (
-    <div
-      style={{
-        backgroundImage: 'url("/src/images/pexels-dziana-hasanbekava-5480827.jpg")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-      }}
-    >
       <PageTemplate
         title="Discover Movies"
         movies={movies}
@@ -35,7 +26,6 @@ const MoviePage = (props) => {
           return <AddMovieToFavouritesIcon movie={movie} />;
         }}
       />
-    </div>
   );
 };
 

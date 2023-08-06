@@ -34,7 +34,7 @@ export default function MovieCard({ movie, action }) {
 
   return (
     <Card sx={styles.card}> 
-        <CardHeader sx={styles.header} avatar={movie.movieFavourite ? ( //check this line movie.favourites??
+        <CardHeader sx={styles.header} avatar={movie.movieFavourite ? ( 
           <Avatar sx={styles.avatar}>
             <FavoriteIcon />
           </Avatar>

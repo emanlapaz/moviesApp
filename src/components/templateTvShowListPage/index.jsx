@@ -77,34 +77,19 @@ function TvShowListPageTemplate({ title, action }) {
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
           <Header
-            title={title}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            handlePageChange={handlePageChange}
-          />
+            title={title} currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
         </Grid>
         <Grid item container spacing={5}>
           <TvShowList action={action} tvShows={displayedTvShows} />
         </Grid>
       </Grid>
       <Fab
-        color="secondary"
-        variant="extended"
-        onClick={() => setDrawerOpen(true)}
-        sx={styles.fab}
-      >
+        color="secondary" variant="extended" onClick={() => setDrawerOpen(true)} sx={styles.fab}>
         Filter
       </Fab>
       <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
-        <FilterCard
-          onUserInput={handleChange}
-          titleFilter={nameFilter}
-          genreFilter={genreFilter}
-        />
+        anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <FilterCard onUserInput={handleChange} titleFilter={nameFilter} genreFilter={genreFilter}/>
       </Drawer>
     </div>
   );

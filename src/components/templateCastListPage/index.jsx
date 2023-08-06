@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../headerCastList";
 import FilterCastsCard from "../filterCastsCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import CastCard from "../castCard";
+import CastList from "../castList";
+import { getPopularCasts } from "../../api/tmdb-api";
+import Typography from "@mui/material/Typography";
 
 const styles = {
   container: {
@@ -29,43 +31,41 @@ const styles = {
   },
 };
 
-function CastListPageTemplate({ casts, title }) {
-  const [filteredCasts, setFilteredCasts] = useState(casts);
-  const [titleFilter, setTitleFilter] = useState("");
-  const [genreFilter, setGenreFilter] = useState("0");
+function CastListPageTemplate({ title, action }) {
+  const [casts, setCasts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const handleFilterChange = (type, value) => {
-    if (type === "title") {
-      setTitleFilter(value);
-    } else {
-      setGenreFilter(value);
+  useEffect(() => {
+    fetchCasts();
+  }, [currentPage]);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
     }
-    filterCasts(value);
   };
 
-  const filterCasts = (genreId) => {
-    const filteredCasts = casts.filter((cast) => {
-      return (
-        cast.name.toLowerCase().includes(titleFilter.toLowerCase()) &&
-        (genreId === "0" || cast.gender === parseInt(genreId))
-      );
-    });
-    setFilteredCasts(filteredCasts);
+  const fetchCasts = async () => {
+    try {
+      const data = await getPopularCasts(currentPage);
+      setCasts(data.results);
+      setTotalPages(data.total_pages);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
+  
 
   return (
     <div style={styles.container}>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
-          <Header title={title} />
+          <Header title={title} currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
         </Grid>
         <Grid item container spacing={5}>
-          {filteredCasts.map((cast) => (
-            <Grid key={cast.id} item xs={12} sm={6} md={4} lg={3}>
-              <CastCard cast={cast} />
-            </Grid>
-          ))}
+          <CastList casts={casts} action={action} />
         </Grid>
       </Grid>
       <Fab
@@ -81,7 +81,6 @@ function CastListPageTemplate({ casts, title }) {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       >
-        <FilterCastsCard onUserInput={handleFilterChange} />
       </Drawer>
     </div>
   );

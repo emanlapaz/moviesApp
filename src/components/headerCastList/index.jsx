@@ -1,9 +1,10 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
 const styles = {
   root: {
@@ -15,25 +16,32 @@ const styles = {
   },
 };
 
-const Header = (props ) => {
-  const title = props.title
+const Header = ({ title, currentPage, totalPages, handlePageChange }) => {
+  const goToPreviousPage = () => {
+    handlePageChange(currentPage - 1);
+  };
+
+  const goToNextPage = () => {
+    handlePageChange(currentPage + 1);
+  };
 
   return (
     <Paper component="div" sx={styles.root}>
-      <IconButton
-        aria-label="go back"
-      >
-        <ArrowBackIcon color="primary" fontSize="large" />
+      <IconButton aria-label="previous page" onClick={goToPreviousPage}>
+        <KeyboardArrowLeftIcon color="primary" fontSize="large" />
       </IconButton>
 
       <Typography variant="h4" component="h3">
         {title}
       </Typography>
-      <IconButton
-        aria-label="go forward"
-      >
-        <ArrowForwardIcon color="primary" fontSize="large" />
+      <IconButton aria-label="next page" onClick={goToNextPage}>
+        <KeyboardArrowRightIcon color="primary" fontSize="large" />
       </IconButton>
+      <Grid item xs={12}>
+          <Typography variant="body1" align="center">
+            Page {currentPage} of {totalPages}
+          </Typography>
+        </Grid>
     </Paper>
   );
 };
