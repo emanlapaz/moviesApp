@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -21,6 +22,7 @@ const styles = {
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
+  const location = useLocation(); // Get the current location
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -29,14 +31,13 @@ const SiteHeader = () => {
 
   const menuOptions = [
     { label: "Home", path: "/" },
-    { label: "WHATS HOT!", path: "/trendingMovies" },
+    { label: "WHATS HOT!", path: "/trending" },
     { label: "Movies", path: "/movies" },
-    { label: "Movie Favorites", path: "/movies/favourites" }, // add movies and TV together for favorites
-    { label: "Upcoming", path: "/movies/upcoming" }, // added
+    { label: "Movie Favorites", path: "/movies/favourites" },
+    { label: "Upcoming", path: "/movies/upcoming" },
     { label: "TV SHOWS", path: "/tvShows" },
     { label: "On the Air", path: "/tvShows/onTheAir" },
     { label: "Casts", path: "/casts" },
-  
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -46,9 +47,10 @@ const SiteHeader = () => {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   return (
     <>
-    <AppBar position="fixed" elevation={0} color="primary">
+      <AppBar position="fixed" elevation={0} color="primary">
         <Toolbar>
           <Typography variant="h4" sx={styles.title}>
             MOVision!
@@ -94,19 +96,23 @@ const SiteHeader = () => {
               </Menu>
             </>
           ) : (
-            <>
-              {menuOptions.map((opt) => (
-                <Button
-                  key={opt.label}
-                  color={opt.label === "WHATS HOT!" ? "secondary" : "inherit"}
-                  onClick={() => handleMenuSelect(opt.path)}
-                  sx={{
-                    fontWeight: opt.label === "WHATS HOT!" ? "bold" : "normal",
-                    color: opt.label === "WHATS HOT!" ? "#ff0000" : "inherit",
-                  }}
-                >
-                  {opt.label}
-                </Button>
+          <>
+            {menuOptions.map((opt) => (
+              <Button
+                key={opt.label}
+                color={opt.label === "WHATS HOT!" ? "secondary" : "inherit"}
+                onClick={() => handleMenuSelect(opt.path)}
+                sx={{
+                  fontWeight: opt.label === "WHATS HOT!" ? "bold" : "normal",
+                  color: "#ffffff", // Set the color to white (#ffffff) for all labels, including "WHATS HOT!"
+                  backgroundColor:
+                    opt.path === location.pathname
+                      ? "#ff0000" // Set the active button background color here
+                      : "transparent",
+                }}
+              >
+                {opt.label}
+              </Button>
               ))}
             </>
           )}

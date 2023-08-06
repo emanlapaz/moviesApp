@@ -8,9 +8,9 @@ import Typography from "@mui/material/Typography";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from '../movieReviews';
+import MovieReviews from "../movieReviews";
 import { useQuery } from "react-query";
-import { getMovieCredits } from "../../api/tmdb-api";
+import { getMovieCredits, getSimilarMovie } from "../../api/tmdb-api"; // Import getSimilarMovie
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
@@ -72,15 +72,21 @@ const MovieDetails = ({ movie }) => {
     getMovieCredits
   );
 
-  if (isLoading) {
+  const { data: similarData, isLoading: isSimilarLoading, isError: isSimilarError, error: similarError } = useQuery(
+    ["similarMovies", { id: movie.id }],
+    getSimilarMovie
+  );
+
+  if (isLoading || isSimilarLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  if (isError || isSimilarError) {
+    return <div>Error: {error.message || similarError.message}</div>;
   }
 
   const credits = data.cast || [];
+  const similarMovies = similarData.results || [];
 
   return (
     <>
@@ -142,6 +148,35 @@ const MovieDetails = ({ movie }) => {
           ))}
         </Grid>
       </Paper>
+      <Paper>
+        <Typography variant="h6" component="p">
+          Similar Movies:
+        </Typography>
+        <Grid container spacing={2}>
+          {similarMovies.map((similarMovie) => (
+            <Grid item key={similarMovie.id} xs={6} sm={4} md={3} lg={2}>
+              <Card style={styles.card}>
+                <CardMedia
+                  component={Link}
+                  to={`/movies/${similarMovie.id}`} // Assuming you have a movie details page at this route
+                  style={styles.cardImage}
+                  image={
+                    similarMovie.poster_path
+                      ? `https://image.tmdb.org/t/p/w185/${similarMovie.poster_path}`
+                      : "https://via.placeholder.com/150x300"
+                  }
+                  alt={similarMovie.title}
+                />
+                <div style={styles.cardContent}>
+                  {similarMovie.title}
+                  <p style={styles.characterName}>Release Date: {similarMovie.release_date}</p>
+                </div>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Paper>
+  
       <Fab
         color="secondary"
         variant="extended"

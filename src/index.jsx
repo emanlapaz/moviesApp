@@ -3,7 +3,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Navigate, Routes } from 'react-router-dom';
 import MoviePage from './pages/moviePage';
-import TrendingMoviePage from './pages/trendingPage';
+import TrendingPage from './pages/trendingPage';
 import HomePage from './pages/homePage';
 import MovieDetailPage from './pages/movieDetailsPage';
 import CastDetailPage from './pages/castDetailsPage';
@@ -53,7 +53,7 @@ const App = () => {
             <Route path="/tvShowReviews/form" element={<AddTvShowReviewPage />} />
             <Route path="/tvShows" element={<TvShowPage />} />
             <Route path="/tvShows/onTheAir" element={<OnTheAirTvShowPage />} />
-            <Route path="/trendingMovies" element={<TrendingMoviePage />} />
+            <Route path="/trending" element={<TrendingPage />} />
             <Route path="/casts" element={<PopularCastPage />} />
             <Route path="/casts/:id" element={<CastDetailPage />} />
           </Routes>
