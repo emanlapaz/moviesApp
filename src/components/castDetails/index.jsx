@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-
+import { Link } from "react-router-dom";
 
 const styles = {
   chipSet: {
@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-const CastDetails = ( {cast}) => {
+const CastDetails = ({ cast }) => {
   const [drawerOpen, setDrawerOpen] = useState(false); // New
 
   return (
@@ -58,7 +58,9 @@ const CastDetails = ( {cast}) => {
           </Typography>
           <ul>
             {cast.credits.map((credit) => (
-              <li key={credit.id}>{credit.title || credit.name}</li>
+              <li key={credit.id}>
+                <Link to={`/movies/${credit.id}`}>{credit.title || credit.name}</Link>
+              </li>
             ))}
           </ul>
         </>
@@ -80,6 +82,6 @@ const CastDetails = ( {cast}) => {
       </Drawer>
     </>
   );
-  
 };
-export default  CastDetails ;
+
+export default CastDetails;

@@ -1,37 +1,48 @@
 import React from "react";
 import CastHeader from "../headerCast";
 import Grid from "@mui/material/Grid";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { getCastImages, getCombinedCredits } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
+import Typography from "@mui/material/Typography";
 
 const styles = {
-  gridListRoot: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
+  root: {
+    padding: "15px",
   },
   gridList: {
-    width: 450,
-    height: "100vh",
-  },
-  credits: {
-    padding: "15px",
-    backgroundColor: "#f0f0f0",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: "5px", // Reduce the gap between credit cards
   },
   creditCard: {
-    width: "150px",
-    height: "300px",
-    margin: "10px",
+    width: "200px",
+    height: "350px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    borderRadius: "10px",
+    overflow: "hidden",
   },
   creditImage: {
-    width: "100%",
-    height: "150px",
+    height: "70%",
     objectFit: "cover",
+  },
+  creditInfo: {
+    padding: "10px",
+  },
+  creditTitle: {
+    fontSize: "16px",
+    fontWeight: "bold",
+    marginBottom: "5px",
+  },
+  creditCharacter: {
+    fontSize: "14px",
+    color: "#555",
   },
 };
 
@@ -54,42 +65,47 @@ const TemplateCastPage = ({ cast, children }) => {
     return <h1>{imagesError?.message || creditsError?.message}</h1>;
   }
 
-  // Check if data is available and images array exists
   const images = imagesData?.posters || [];
   const credits = creditsData?.cast || [];
 
   return (
-    <>
+    <div style={styles.root}>
       <CastHeader cast={cast} />
 
-      <Grid container spacing={5} style={{ padding: "15px" }}>
+      <Grid container spacing={3}>
         <Grid item xs={12} sm={9}>
-          {children}
+          <Typography variant="h5" component="h3">
+            Overview
+          </Typography>
+
+          <Typography variant="h6" component="p">
+            {cast.biography}
+          </Typography>
+
         </Grid>
 
         <Grid item xs={12} sm={3}>
-          <div sx={styles.gridListRoot}>
-            <ImageList cols={1}>
-              {images.map((image) => (
-                <ImageListItem key={image.file_path} sx={styles.gridListTile} cols={1}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                    alt={image.poster_path}
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
+          <div style={styles.gridList}>
+            {images.map((image) => (
+              <Card key={image.file_path} style={styles.creditCard}>
+                <CardMedia
+                  style={styles.creditImage}
+                  image={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                  alt={image.poster_path}
+                />
+              </Card>
+            ))}
           </div>
         </Grid>
 
-        <Grid item xs={12} sx={styles.credits}>
-          <h2>Credits:</h2>
+        <Grid item xs={12}>
+          <h2>Appearances:</h2>
           <Grid container spacing={2}>
             {credits.map((credit) => (
-              <Grid item key={credit.id} xs={12} sm={6} md={4} lg={3}>
-                <Card sx={styles.creditCard}>
+              <Grid item key={credit.id} xs={6} sm={4} md={3} lg={2}>
+                <Card style={styles.creditCard}>
                   <CardMedia
-                    sx={styles.creditImage}
+                    style={styles.creditImage}
                     image={
                       credit.poster_path
                         ? `https://image.tmdb.org/t/p/w500/${credit.poster_path}`
@@ -97,9 +113,9 @@ const TemplateCastPage = ({ cast, children }) => {
                     }
                     alt={credit.title || credit.name}
                   />
-                  <div style={{ padding: "10px" }}>
-                    <p>{credit.title || credit.name}</p>
-                    <p>Character: {credit.character}</p>
+                  <div style={styles.creditInfo}>
+                    <p style={styles.creditTitle}>{credit.title || credit.name}</p>
+                    <p style={styles.creditCharacter}>Character: {credit.character}</p>
                   </div>
                 </Card>
               </Grid>
@@ -107,7 +123,7 @@ const TemplateCastPage = ({ cast, children }) => {
           </Grid>
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 };
 

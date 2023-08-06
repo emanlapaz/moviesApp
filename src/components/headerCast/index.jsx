@@ -16,27 +16,25 @@ const styles = {
     marginBottom: "20px",
   },
   avatar: {
-    width: "100px",
-    height: "100px",
+    width: "150px",
+    height: "150px",
     marginRight: "10px",
+  },
+  headerContent: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center", // Center align horizontally
+    textAlign: "center", // Center align text
   },
 };
 
 const CastHeader = (props) => {
-  const cast = props.cast;
+  const { cast } = props;
 
   return (
-    <Paper component="div" sx={styles.root}>
-        <IconButton aria-label="go back">
-        <ArrowBackIcon color="primary" fontSize="large" />
-      </IconButton>
-      <IconButton aria-label="go forward">
-        <ArrowForwardIcon color="primary" fontSize="large" />
-      </IconButton>
-
-      <Typography variant="h4" component="h3">        
-          {cast.name}{"   "}
-          <Avatar
+    <Paper component="div" sx={styles.header}>
+      <div style={styles.headerContent}>
+        <Avatar
           alt={cast.name}
           src={
             cast.profile_path
@@ -45,13 +43,19 @@ const CastHeader = (props) => {
           }
           sx={styles.avatar}
         />
-        <br />
-        <span>{`${cast.known_for_department}`} </span>
-      </Typography>
-      <Typography variant="body1" component="p">
-        Popularity: {cast.popularity}
-      </Typography>
-        </Paper>
+
+        <div>
+          <Typography variant="h4" component="h3">
+            {cast.name}
+            <br />
+            <span>{`${cast.known_for_department}`}</span>
+          </Typography>
+          <Typography variant="body1" component="p">
+            Popularity: {cast.popularity}
+          </Typography>
+        </div>
+      </div>
+    </Paper>
   );
 };
 
