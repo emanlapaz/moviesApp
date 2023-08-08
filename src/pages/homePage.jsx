@@ -64,11 +64,6 @@ const HomePage = () => {
               Whats hot?
             </Button>
           </Link>
-          <Link to="/mymovision">
-            <Button variant="contained" color="primary" sx={styles.button}>
-              my mo-vision
-            </Button>
-          </Link>
         </Stack>
       </Box>
     </>

@@ -69,6 +69,9 @@ export default function FilterMoviesCard(props) {
             <FilterAltIcon fontSize="large" />
             Filter
           </Typography>
+          <Typography variant="h6" component="h1">
+            Search title
+          </Typography>
           <TextField
             sx={styles.formControl}
             id="filled-search"

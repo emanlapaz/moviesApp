@@ -63,16 +63,26 @@ function MovieListPageTemplate({ title, action }) {
     }
   };
 
+
   const sortMovies = (movies, sortFilter) => {
     return [...movies].sort((a, b) => {
       if (sortFilter === "popularity.desc") {
         return b.popularity - a.popularity;
       } else if (sortFilter === "popularity.asc") {
         return a.popularity - b.popularity;
+      } else if (sortFilter === "vote_average.desc") {
+        return b.vote_average - a.vote_average;
+      } else if (sortFilter === "vote_average.asc") {
+        return a.vote_average - b.vote_average;
+      } else if (sortFilter === "release_date.desc") {
+        return new Date(b.release_date) - new Date(a.release_date);
+      } else if (sortFilter === "release_date.asc") {
+        return new Date(a.release_date) - new Date(b.release_date);
       }
       return 0;
     });
   };
+
 
   const handleChange = (type, value) => {
     if (type === "title") {
