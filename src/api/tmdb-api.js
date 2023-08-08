@@ -44,20 +44,21 @@ export const getCast = (args) => {
  });
 };
 
-export const getPopularCasts = (pageNumber) => {
-  return fetch(
-    `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${pageNumber}`
-  )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.json().message);
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      throw error;
-    });
+export const getPopularCasts = async (pageNumber, sortFilter) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${pageNumber}&sort_by=${sortFilter}`
+    );
+    if (!response.ok) {
+      throw new Error(await response.json());
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
 };
+
 
 
 export const getMovie = (args) => {

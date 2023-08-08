@@ -35,11 +35,12 @@ function CastListPageTemplate({ title, action }) {
   const [casts, setCasts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [sortFilter, setSortFilter] = useState("popularity.desc");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     fetchCasts();
-  }, [currentPage]);
+  }, [currentPage, sortFilter]);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -47,22 +48,42 @@ function CastListPageTemplate({ title, action }) {
     }
   };
 
+  const handleUserInput = (type, value) => {
+    if (type === "sort") {
+      setSortFilter(value);
+    }
+  };
+
   const fetchCasts = async () => {
     try {
       const data = await getPopularCasts(currentPage);
-      setCasts(data.results);
+      const sortedCasts = sortCasts(data.results, sortFilter);
+      setCasts(sortedCasts);
       setTotalPages(data.total_pages);
     } catch (error) {
       console.error(error.message);
     }
   };
-  
+
+  const sortCasts = (casts, sortFilter) => {
+    if (sortFilter === "popularity.asc") {
+      return casts.sort((a, b) => a.popularity - b.popularity);
+    } else if (sortFilter === "popularity.desc") {
+      return casts.sort((a, b) => b.popularity - a.popularity);
+    }
+    return casts;
+  };
 
   return (
     <div style={styles.container}>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
-          <Header title={title} currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
+          <Header
+            title={title}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handlePageChange={handlePageChange}
+          />
         </Grid>
         <Grid item container spacing={5}>
           <CastList casts={casts} action={action} />
@@ -76,11 +97,8 @@ function CastListPageTemplate({ title, action }) {
       >
         Filter
       </Fab>
-      <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
+      <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <FilterCastsCard onUserInput={handleUserInput} sortFilter={sortFilter} />
       </Drawer>
     </div>
   );
