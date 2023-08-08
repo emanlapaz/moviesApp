@@ -1,6 +1,34 @@
-#movieApp
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/homepage.png">
+#mo-vision movieapp
 Fullstack 2 Assignment 1
 Eugenio Manlapaz
+<br/>
+This is my React movie app based on the Movie Database API's
+<br/>
+I created a home page above with links to various pages. 
+I have used the movies, tv shows and people APIs in this web app
+
+<br/>
+Discover Movies
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/movies.png">
+<br/>
+Upcoming Movies
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/upcomingMovies.png">
+<br/>
+Discover TV shows
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/tvshows.png">
+<br/>
+On the Air Tv shows
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/ontheair.png">
+<br/>
+
+I also have favourite pages for both tv and movies
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/movies%20favorites.png">
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/tvfavorites.png">
+<br/>
+I also added the Casts and Similar shows for the movie and Tv Shows detail pages.
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/moviedetails.png">
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/tvshowdetails.png">
 
 
 
@@ -33,4 +61,7 @@ a. Back end persistence using supabase, favourites, fantasy movies
 b. Rich feature set
 
 
+
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/cache.png">
+Cache
 
