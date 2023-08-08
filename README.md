@@ -30,37 +30,22 @@ I also added the Casts and Similar shows for the movie and Tv Shows detail pages
 <img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/moviedetails.png">
 <img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/tvshowdetails.png">
 
+<br/>
+The cast will display the Popular People
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/popular%20people.png">
 
+<br/>
+The cast detail page will display an overview and the movies and Tv shows appearances of the cast
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/castpage.png">
 
->> plan: 
-add my fantasy movies page, 
-favorite TV series page, 
-Movie recommendation
-TV recommendation pages
+<br/>
+The casts, movies and Tvshows are all linked together. Just click on the images.
+<br/>
+I also added title filter and sorting 
+<img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/filter%20and%20sort.png">
 
-
-3. * Adapt and experiment
-a. UI, extensive data hyperlinking
-b. Pagination - for data listing pages
-c. Routing; basic authentication. 
-    private/public routes (Movie details). 
-    premium functionality
-d. Functionality: 
-    favorite actors/ TV series
-    multi-criteria search
-e. Storybook support
-
-4. * Excellent
-a. Functionality
-    Ordered favourites
-    Created themed movie playlist (Title, theme, movies)
-    my advanced fantasy movies - add cast with role and desciption, adding/uploading movie poster
-
-5. Outstanding
-a. Back end persistence using supabase, favourites, fantasy movies
-b. Rich feature set
-
-
+For the pagination, I used the header arrow buttons to move thru the pages based on the API endpoints>
+All the pages are cached
 
 <img src="https://github.com/emanlapaz/moviesApp/blob/main/src/images/cache.png">
 Cache
