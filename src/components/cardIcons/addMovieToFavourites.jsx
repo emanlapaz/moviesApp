@@ -20,4 +20,3 @@ const AddMovieToFavouritesIcon = ({ movie }) => {
 
 export default AddMovieToFavouritesIcon;
 
-// changed to addMoviesToFavourites.jsx

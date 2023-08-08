@@ -20,4 +20,3 @@ const AddTvShowToFavouritesIcon = ({ tvShow }) => {
 
 export default AddTvShowToFavouritesIcon;
 
-// added addTvShowToFavourites.jsx

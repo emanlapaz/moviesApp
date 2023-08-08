@@ -12,6 +12,3 @@ const TvShowList = ( {tvShows, action }) => {
 };
 
 export default TvShowList;
-
-
-// added TvShowList

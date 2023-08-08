@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import PageTemplate from "../components/templateTvShowListPage";
+import PageTemplate from "../components/templateFavouriteTvShows";
 import { Context } from "../contexts/Context";
 import { useQueries } from "react-query";
 import { getTvShow } from "../api/tmdb-api";
@@ -10,7 +10,7 @@ import WriteTvShowReview from "../components/cardIcons/writeTvShowReview";
 const FavouriteTvShowsPage = (props) => {
   const { tvShowFavourites: tvShowIds } = useContext(Context);
 
-  // Create an array of queries and run them in parallel.
+
   const favouriteTvShowQueries = useQueries(
     tvShowIds.map((tvShowId) => {
       return {
@@ -19,7 +19,7 @@ const FavouriteTvShowsPage = (props) => {
       };
     })
   );
-  // Check if any of the parallel queries is still loading.
+
   const isLoading = favouriteTvShowQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {
@@ -47,5 +47,3 @@ const FavouriteTvShowsPage = (props) => {
 
 export default FavouriteTvShowsPage;
 
-
-// favourite TV show page

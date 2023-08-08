@@ -81,10 +81,3 @@ export default function TvShowCard({ tvShow, action }) {
     </Card>
   );
 }
-
-
-// added TvShowcard
-// changed favourites to tvShowFavourites
-
-// changed title to name?
-// change tvShow.id

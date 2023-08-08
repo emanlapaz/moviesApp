@@ -6,7 +6,7 @@ import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import MovieList from "../movieList";
 import { getMovies } from "../../api/tmdb-api";
-import TextField from "@mui/material/TextField";
+
 
 const styles = {
   container: {
@@ -64,16 +64,12 @@ function MovieListPageTemplate({ title, action }) {
   };
 
   const sortMovies = (movies, sortFilter) => {
-    // Implement sorting logic here
-    // For example, you can use JavaScript's Array.sort() method
-    // Here's a basic example for sorting by popularity:
     return [...movies].sort((a, b) => {
       if (sortFilter === "popularity.desc") {
         return b.popularity - a.popularity;
       } else if (sortFilter === "popularity.asc") {
         return a.popularity - b.popularity;
       }
-      // Add other sorting cases as needed
       return 0;
     });
   };
