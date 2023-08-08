@@ -1,25 +1,19 @@
-import React from "react"; 
-//import React, {useState, useEffect}  from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import TextField from "@mui/material/TextField";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import SortIcon from '@mui/icons-material/Sort';
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useQuery } from "react-query";
-import Spinner from '../spinner'
+import Spinner from "../spinner";
 import { getTvShowGenres } from "../../api/tmdb-api";
 
 const styles = {
   root: {
     maxWidth: 345,
   },
-  media: { height: 300 },
-
   formControl: {
     margin: 1,
     minWidth: 220,
@@ -42,65 +36,60 @@ export default function FilterTvShowsCard(props) {
     genres.unshift({ id: "0", name: "All" });
   }
 
-  const handleUserImput = (e, type, value) => {
+  const handleUserInput = (e, type, value) => {
     e.preventDefault();
-    props.onUserInput(type, value); // NEW
+    props.onUserInput(type, value);
   };
 
-  const handleTextChange = (e, props) => {
-    handleUserImput(e, "title", e.target.value);  //? "name"??
+  const handleTextChange = (e) => {
+    handleUserInput(e, "name", e.target.value);
   };
 
   const handleGenreChange = (e) => {
-    handleUserImput(e, "genre", e.target.value);
+    handleUserInput(e, "genre", e.target.value);
   };
+
+  const handleSortChange = (e) => {
+    handleUserInput(e, "sort", e.target.value);
+  };
+
   return (
     <>
-    <Card sx={styles.root} variant="outlined">
-      <CardContent>
-        <Typography variant="h5" component="h1">
-          <FilterAltIcon fontSize="large" />
-          Filter the tv shows.
-        </Typography>
-        <TextField
-            sx={styles.formControl}
-            id="filled-search"
-            label="Search field"
-            type="search"
-            value={props.titleFilter}
-            variant="filled"
-            onChange={handleTextChange}
-            />
-        <FormControl sx={styles.formControl}>
-          <InputLabel id="genre-label">Genre</InputLabel>
-          <Select
-            labelId="genre-label"
-            id="genre-select"
-            value={props.genreFilter}
-            onChange={handleGenreChange}
+      <Card sx={styles.root} variant="outlined">
+        <CardContent>
+          <Typography variant="h5" component="h1">
+            Filter the TV shows.
+          </Typography>
+          <FormControl sx={styles.formControl}>
+            <InputLabel id="genre-label">Genre</InputLabel>
+            <Select
+              labelId="genre-label"
+              id="genre-select"
+              value={props.genreFilter}
+              onChange={handleGenreChange}
             >
-            {genres.map((genre) => {
-              return (
+              {genres.map((genre) => (
                 <MenuItem key={genre.id} value={genre.id}>
                   {genre.name}
                 </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </CardContent>
-    </Card>
-    <Card sx={styles.root} variant="outlined">
-        <CardContent>
-          <Typography variant="h5" component="h1">
-            <SortIcon fontSize="large" />
-            Sort the tv shows.
-          </Typography>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl sx={styles.formControl}>
+            <InputLabel id="sort-label">Sort By</InputLabel>
+            <Select
+              labelId="sort-label"
+              id="sort-select"
+              value={props.sortFilter}
+              onChange={handleSortChange}
+            >
+              <MenuItem value="popularity.desc">Popularity (Descending)</MenuItem>
+              <MenuItem value="popularity.asc">Popularity (Ascending)</MenuItem>
+              {/* Add more sorting options as needed */}
+            </Select>
+          </FormControl>
         </CardContent>
       </Card>
-      </>
+    </>
   );
 }
-
-
-// added filter card

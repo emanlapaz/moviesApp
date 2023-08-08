@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../headerTvShowList";
-import FilterCard from "../filterMoviesCard";
+import FilterTvShowsCard from "../filterTvShowCard"; // Make sure to import the correct component
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
@@ -34,13 +34,14 @@ function TvShowListPageTemplate({ title, action }) {
   const [tvShows, setTvShows] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+  const [sortFilter, setSortFilter] = useState("popularity.desc");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     fetchTvShows();
-  }, [currentPage]);
+  }, [currentPage, sortFilter]);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -50,17 +51,30 @@ function TvShowListPageTemplate({ title, action }) {
 
   const fetchTvShows = async () => {
     try {
-      const data = await getTvShows(currentPage);
-      setTvShows(data.results);
+      const data = await getTvShows(currentPage, sortFilter);
+      const sortedTvShows = sortTvShows(data.results, sortFilter);
+      setTvShows(sortedTvShows);
       setTotalPages(data.total_pages);
     } catch (error) {
       console.error(error.message);
     }
   };
 
+  const sortTvShows = (tvShows, sortFilter) => {
+    return [...tvShows].sort((a, b) => {
+      if (sortFilter === "popularity.desc") {
+        return b.popularity - a.popularity;
+      } else if (sortFilter === "popularity.asc") {
+        return a.popularity - b.popularity;
+      }
+      return 0;
+    });
+  };
+
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
-    else setGenreFilter(value);
+    else if (type === "genre") setGenreFilter(value);
+    else if (type === "sort") setSortFilter(value);
   };
 
   const displayedTvShows = tvShows
@@ -89,7 +103,7 @@ function TvShowListPageTemplate({ title, action }) {
       </Fab>
       <Drawer
         anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <FilterCard onUserInput={handleChange} titleFilter={nameFilter} genreFilter={genreFilter}/>
+        <FilterTvShowsCard onUserInput={handleChange} titleFilter={nameFilter} genreFilter={genreFilter} sortFilter={sortFilter} />
       </Drawer>
     </div>
   );
