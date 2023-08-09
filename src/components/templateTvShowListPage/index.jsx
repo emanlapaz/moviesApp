@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../headerTvShowList";
-import FilterTvShowsCard from "../filterTvShowCard"; // Make sure to import the correct component
+import FilterTvShowsCard from "../filterTvShowCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";

@@ -23,8 +23,8 @@ const styles = {
   headerContent: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center", // Center align horizontally
-    textAlign: "center", // Center align text
+    justifyContent: "center", 
+    textAlign: "center", 
   },
 };
 

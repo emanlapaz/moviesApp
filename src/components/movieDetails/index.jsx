@@ -10,7 +10,7 @@ import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import { useQuery } from "react-query";
-import { getMovieCredits, getSimilarMovie } from "../../api/tmdb-api"; // Import getSimilarMovie
+import { getMovieCredits, getSimilarMovie } from "../../api/tmdb-api";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";

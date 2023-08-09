@@ -13,6 +13,3 @@ const TvShowReviewPage = (props) => {
 };
 
 export default TvShowReviewPage;
-
-
-// ? jsx

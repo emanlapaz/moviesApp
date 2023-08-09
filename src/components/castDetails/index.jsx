@@ -28,7 +28,7 @@ const styles = {
 };
 
 const CastDetails = ({ cast }) => {
-  const [drawerOpen, setDrawerOpen] = useState(false); // New
+  const [drawerOpen, setDrawerOpen] = useState(false); 
 
   return (
     <>

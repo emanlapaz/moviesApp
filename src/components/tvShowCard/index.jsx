@@ -34,7 +34,7 @@ export default function TvShowCard({ tvShow, action }) {
 
   return (
     <Card sx={styles.card}>
-        <CardHeader sx={styles.header} avatar={tvShow.tvShowFavourite ? ( //changed from tvShow.favourite
+        <CardHeader sx={styles.header} avatar={tvShow.tvShowFavourite ? (
           <Avatar sx={styles.avatar}>
             <FavoriteIcon />
           </Avatar>

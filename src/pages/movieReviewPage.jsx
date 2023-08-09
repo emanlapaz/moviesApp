@@ -13,6 +13,3 @@ const MovieReviewPage = (props) => {
 };
 
 export default MovieReviewPage;
-
-
-// changed <TemplateMoviePage to <PageTemplate

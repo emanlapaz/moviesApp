@@ -22,7 +22,7 @@ const styles = {
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -105,10 +105,10 @@ const SiteHeader = () => {
                 onClick={() => handleMenuSelect(opt.path)}
                 sx={{
                   fontWeight: opt.label === "WHATS HOT!" ? "bold" : "normal",
-                  color: "#ffffff", // Set the color to white (#ffffff) for all labels, including "WHATS HOT!"
+                  color: "#ffffff",
                   backgroundColor:
                     opt.path === location.pathname
-                      ? "#ff0000" // Set the active button background color here
+                      ? "#ff0000"
                       : "transparent",
                 }}
               >

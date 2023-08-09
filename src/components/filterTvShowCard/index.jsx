@@ -85,7 +85,7 @@ export default function FilterTvShowsCard(props) {
             >
               <MenuItem value="popularity.desc">Popularity (Descending)</MenuItem>
               <MenuItem value="popularity.asc">Popularity (Ascending)</MenuItem>
-              {/* Add more sorting options as needed */}
+         
             </Select>
           </FormControl>
         </CardContent>

@@ -47,6 +47,3 @@ const TvShowDetailsPage = () => {
 };
 
 export default TvShowDetailsPage;
-
-
-// recheck original for the useMovie

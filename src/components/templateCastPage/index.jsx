@@ -17,7 +17,7 @@ const styles = {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
-    gap: "5px", // Reduce the gap between credit cards
+    gap: "5px",
   },
   creditCard: {
     width: "200px",

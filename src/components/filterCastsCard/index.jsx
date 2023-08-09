@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
-import { getPopularCasts } from "../../api/tmdb-api"; // Update import here
+import { getPopularCasts } from "../../api/tmdb-api";
 
 const styles = {
   root: {
@@ -22,7 +22,7 @@ const styles = {
 };
 
 export default function FilterCastsCard(props) {
-  const { data, error, isLoading, isError } = useQuery("popular casts", getPopularCasts); // Use getPopularCasts here
+  const { data, error, isLoading, isError } = useQuery("popular casts", getPopularCasts); 
 
   if (isLoading) {
     return <Spinner />;
@@ -32,7 +32,7 @@ export default function FilterCastsCard(props) {
     return <h1>{error.message}</h1>;
   }
 
-  // Handle user input and sorting logic
+
   const handleUserInput = (e, type, value) => {
     e.preventDefault();
     props.onUserInput(type, value);

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageTemplate from '../components/templateTvShowListPage'
 import { getOnTheAirTvShows } from "../api/tmdb-api";
-// import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 import AddTvShowToPlaylistIcon from '../components/cardIcons/addTvShowToPlaylist'
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
@@ -36,5 +35,3 @@ const OnTheAirTvShowPage = (props) => {
   );
 };
 export default OnTheAirTvShowPage;
-
-//change pagetemplate
